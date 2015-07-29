@@ -1,0 +1,117 @@
+#+TITLE: Frequently asked questions
+
+* I want to use a non-departmental computer. What should I do?
+
+First, if you have a departmental computer, you should use it because it is already configured for this course.
+
+If that is not the case, you need to install the following programs.
+
+1. Python https://www.enthought.com/products/canopy/ (Windows, Mac and Linux)
+2. LaTeX  https://www.tug.org/texlive/doc.html (Windows, Linux) ([[https://www.tug.org/mactex/][Mac]])
+3. git    [[http://git-scm.com/download/win][Windows]] [[http://git-scm.com/download/mac][Mac]] [[http://git-scm.com/download/linux][Linux]]
+
+You also must make sure you have OpenSSH installed. This comes with git on Windows.
+
+After those are installed, you need to clone the jmax git repository. At the commandline, run:
+
+#+BEGIN_SRC sh
+git clone git://github.com/jkitchin/jmax
+#+END_SRC
+
+I recommend you do this on your Desktop.
+
+** Windows
+You should be ready to go now. Open the jmax folder and double click the jmax.bat file. This should open emacs (it is included in jmax). After emacs has loaded, you will type:
+
+Alt-x techela
+
+and follow the directions. After I register your pub key, you will have access to the course assignments.
+
+** Mac 
+I installed Emacs 24.3 from http://emacsformacosx.com.
+
+I installed git from http://git-scm.com/download/mac
+
+Enthought Canopy has a Mac version.
+
+and MacTeX from http://www.tug.org/mactex.
+
+After that, I was able to clone jmax as described above, and I used the jmax-mac.sh script to open emacs configured to use jmax.
+
+Later, I used brew to build a more modern version 24.4 like this:
+
+#+BEGIN_SRC sh
+brew install emacs --with-gnutls --with-imagemagick --with-librsvg --with-x --use-git-head --HEAD --cocoa
+#+END_SRC
+
+Then run the jmax-mac.sh script in jmax to open emacs. After that, run 
+
+Alt-x techela
+
+and follow the directions. After I register your pub key, you will have access to the course assignments.
+
+** Linux
+Use your package manager to install a modern git, ssh and emacs. Install Enthought for Linux, and clone jmax.  You should be able to run jmax.sh in jmax to launch emacs. After it loads, run 
+
+Alt-x techela
+
+and follow the directions. After I register your pub key, you will have access to the course assignments.
+* I do not want to use Emacs, can I use something else?
+Everything we will do is built into Emacs. There is nothing else that will do what we need. If you like Vim, you should look into configuring Emacs to act like Vim (http://www.emacswiki.org/emacs/ViperMode). 
+
+While it is technically possible to do everything via command-line utilities, I will not spend the time explaining how to do that. It is already coded into Emacs.
+
+* I do not like Python, can I use Matlab? or some other software package?
+
+We will not consider any other math software tools in this class besides Python, and some things we will do are not yet possible with Matlab or other tools. 
+
+You may use Matlab  if you choose, under the following conditions:
+
+1. All of the m-files you create for each assignment must be located in the assignment directory. These will automatically be uploaded to the server for grading.
+
+2. You must publish your m-file to a pdf in Matlab, and you must put a link to the pdf in your assignment org-file so we know where it is. We will not look for the file, the link must be there, and it must open the pdf.
+
+3. We will not provide help in troubleshooting Matlab or other software problems. There is a Math Software TA (Pablo Garcia-Herreros, pgarciah@andrew.cmu.edu) who may be able to help you with those issues.
+
+We will provide complete support for solving problems with Python.
+
+* I see gray boxes for equations.
+
+Make sure LaTeX is installed. 
+
+If you run Windows, try this in your init.el file:
+
+(setq temporary-file-directory (expand-file-name "~/../Local/Temp"))
+
+* I cannot run pyflakes on Windows
+
+Make sure pyflakes is installed.
+
+#+BEGIN_SRC sh
+pip install pyflakes
+#+END_SRC
+
+If it is, then probably Windows is confused by the lack of extension on the pyflakes executable. Run this code block to create a .bat file that should run. this assumes a regular installation of Enthought.
+
+The ~/../../ may be specific to the setup of the MS computers. Home seems to be in ~/AppData/Roaming
+
+#+BEGIN_SRC emacs-lisp
+(let ((scriptsdir (expand-file-name "~/../../AppData/Local/Enthought/Canopy/User/Scripts/")))
+  (if (file-exists-p scriptsdir)
+      (with-temp-file
+	  (expand-file-name (concat scriptsdir "pyflakes.bat"))
+	(insert
+	 "@echo off
+python \"%~dpn0\" %*")
+	(message "pyflakes.bat created"))
+    (error "No Scripts dir found")))
+#+END_SRC
+
+
+#+BEGIN_SRC sh
+cat ~/../../AppData/Local/Enthought/Canopy/User/Scripts/pyflakes.bat
+#+END_SRC
+* I typed my email password into Emacs incorrectly and now I cannot send mail
+Emacs remembers your password for convenience. Unfortunately it remembers bad ones too. Click on this link to make it forget, and send your mail again.
+
+elisp:auth-source-forget-all-cached

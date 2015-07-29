@@ -1,0 +1,97 @@
+#+TITLE: Introduction to Emacs
+#+STARTUP: showall
+
+Emacs is a powerful text editor. You will use it in this course to read course notes, and to complete assignments. Emacs will enable us to do some amazing things throughout the semester. Emacs can be as much as you need in an editor. You will not learn everything it can do at once, and you should not try to. These notes are here so you can refer back to them. Over time, and when you need to, you will learn it. I have, for example, been using Emacs for about 15 year years now. I continue to learn new things about it. It has, afterall, been developed now for approximately 40 years, by a lot of very bright people!
+
+You might wonder, do I have to use Emacs? The answer is yes. Some people say, "But I am a vim user ;(". You should learn how to make Emacs look like Vim (google viper-mode). Vim cannot do what Emacs does in this class. Nothing but Emacs can do what Emacs does in this class. Do not waste time trying to find a way around it.
+
+As you begin to use Emacs, you should rely on the menus to perform operations like opening and closing files, copying and pasting, etc... In the menus you will see for some commands keyboard short cuts. You do not have to use these or learn them, but it will make some things faster. There is an extensive manual for Emacs [fn:1]. You do not need to read this, but you may find helpful information there.
+
+In Emacs, you do everything by running commands. When you press keys, they are sending commands to Emacs which insert characters at the cursor. When you select a menu item, it sends a command to Emacs. Some keys are special, and allow you to type in commands to run. For example, Alt-x means press Alt and x at the same time then release them. You will see M-x (M is for Meta, which is a historical key. Most keyboards today only have an Alt key) in the bottom minibuffer, and you can type in a command name, e.g. techela. The techela command is interactive, and it prompts you for a course name at the bottom of the Emacs screen.
+
+For Keyboard shortcuts, you will often use a sequence of commands that start by pressing Ctrl and some key, followed by some keys. For example, if you see C-x C-s, that means hold down Ctrl, then x, release both, and then hold down Ctrl then s, and release both. That will save the file you have open.
+
+| Action         | shortcut | Emacs command |
+|----------------+----------+---------------|
+| Open a file    | C-x C-f  | find-file     |
+| Save a file    | C-x C-s  | save-buffer   |
+| Close a window | C-x k    | kill-buffer   |
+
+** Split windows
+
+Occasionally it is useful to split the window to have two things open. Sometimes that will happen for some reason and you want to undo it. Here are some ways to do that, and then get back to what you want. If you want two windows side by side, type C-x 3, or select the File menu and split the window. If you want over-under split windows, type C-x 2.
+
+If you want the window you are in to be the only window visible, type C-x 1. If you want the window you are in to disappear, type C-x 0.
+
+
+* Org-mode
+
+org-mode is the markup language the course notes are written in, and the markup language you will create your assignments in. The syntax is simple, and plain text based. You will see the syntax over and over in class, and you will pick up as the course progresses. org-mode provides the functionality in the syllabus (e.g. the course agenda) and the clickable links we use. If you want to learn more about org-mode you can spend some time in the manual [fn:2]. That is not required. You should watch this vidwo: https://www.youtube.com/watch?v=fgizHHd7nOo to see some things that are possible with org-mode. In the next sections I highlight the key features of org-mode we will use in this course.
+
+** Structured documents
+A key feature of org-mode is that it treats documents as outlines. A "section" starts with a line that starts with a single *, followed by the title. Subsections start with **, subsubsections start with ***, etc... You should use this to provide logical structure to your documents when it makes sense.
+
+** Links
+A very powerful feature of org-mode is links. Org-mode turns simple text into clickable links that can open a file:syllabus.org, a url http://orgmode.org/org.html#Hyperlinks, run code elisp:beginning-of-line, and many more things. You will recognize links because they are colored and underlined, like a link in a webpage.
+
+** Equations
+You can include equations in your documents using LaTeX markup. For example, here is a definition of a differential equation:
+
+\[\frac{dC_A}{dt} = k C_A\]
+
+or, a typical kind of equation we might need to solve:
+
+\[V = \frac{F_A - F_{A0}}{r_A}\]
+
+You can "toggle" between the LaTeX code and an image of the equation by typing C-c C-x C-l, or running M-x org-toggle-latex-overlays or click on elisp:org-toggle-latex-overlays, or use the menu "KitchinGroup -> org-mode -> Toggle LaTeX images". When you create the equation images, a directory called ltxpng will be created which is where the images are stored.
+
+See http://en.wikibooks.org/wiki/LaTeX/Mathematics for help in writing equations. You can also toggle the equations in the course notes to learn how they are made.
+
+** Code
+One of the most important reasons we use org-mode is because we can write code inside our documents, and run the code to get the output. We will almost always use Python for this. We have to designate a section of text as a "code block". We do this by having lines that start with #+BEGIN_SRC python and #+END_SRC. The lines between them make up the code. We can run the code by putting our cursor inside the block and pressing C-c C-c. Memorize that. You will do it a lot.
+
+#+BEGIN_SRC python
+print 'Hello world'
+#+END_SRC
+
+#+RESULTS:
+: Hello world
+
+You can learn much more about what is possible here: http://orgmode.org/org.html#Working-With-Source-Code
+
+** Figures
+org-mode can show figures inline. We have to create a file link to the figure, and if Emacs knows how to display the figure it will. You can also toggle the display of figures with C-c C-x C-v or M-x org-toggle-inline-images.
+
+Let us see a code block that makes a figure. Note that you have to manually type in a link to the image after the code block. I recommend you do that before you run the code block, because I have configured org-mode to redisplay inline figures each time you run the code block. 
+
+#+BEGIN_SRC python
+import matplotlib.pyplot as plt
+plt.plot([1,2,4,8])
+plt.savefig('simple-plot.png')
+#+END_SRC
+
+#+RESULTS:
+
+[[./simple-plot.png]]
+
+
+* git								   :optional:
+git is a distributed version control software package [fn:3]. This course is setup so you do not have to know anything about git or how it works. This section is just providing some basic information about the course and how it uses git. 
+
+The course is served from a series of git repositories on techela.cheme.cmu.edu. You are registered with the course through a public ssh key that was created for the course and that is stored on your computer. You need that key to access and turn in assignments. The key is located in ~/.ssh/andrewid.pub. You should not delete or change this key, because you will lose access to the course.
+ 
+Each assignment has its own git repository that is specific to you on the server; only you and the instructors can access these repositories. While the assignment is due, you have read and write access to the repository, which means Emacs can download the repository to ~/techela/f14-06625/assignment-label. You can always write to your local copy of the files, because they are on your own computer. When you "turn in" an assignment, Emacs is saves the local repository, and copies it to the remote server. When we "collect" an assignment, we change the permissions on the remote repository from Read and Write to Read-only. So, you cannot turn in an assignment after the due date, because you do not have write permission anymore. You should also not change your assignment after it is turned in, because that may cause problems later when you get the graded assignment back.
+
+When we grade assignments, we make our own copies of the remote server repositories and grade them. We return the assignments by pushing our graded copies back to the remote server. After they are graded, when you  open an assignment link, Emacs will check to make sure you have the latest copy from the server, and download the graded version for you.
+
+All of this is done either through links in org-mode, or Emacs commands (when you need to run these, you will get instructions on what to do). You will not use git directly in this course. 
+
+* Footnotes
+
+[fn:1] http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html
+
+[fn:2] http://orgmode.org/org.html
+
+[fn:3] http://git-scm.com/book
+
+
