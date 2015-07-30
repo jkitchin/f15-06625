@@ -1,0 +1,860 @@
+#+STARTUP: showall
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
+
+* Some advanced topics in units
+
+** Using units with fsolve, odeint, other functions
+
+- Using units outside of =quantities=, e.g. with fsolve, or odeint will often not work without some extra effort
+  - The best case scenario is you get an error
+  - More often, units will simply be lost or dropped
+
+- This is a general problem
+  - 3^{rd} party packages were not designed with =quantities= in mind, and =quantities= cannot know of every 3^{rd} party package
+  - This is an issue with /every/ units package around
+  - some software packages may be more integrated than others, e.g. Mathematica, or Maple (these are standalone packages)
+  - Other packages, e.g. Matlab, python, or C or Fortran need to be considered carefully
+
+- It is /however/ possible to write "wrapper" functions for using =quantities= with 3^{rd} party packages
+
+- Typically, you store the units going into the problem, if necessary compute the units on the output, and put them back onto the answer.
+
+- Let us consider some typical problems.
+
+** quantities in fsolve
+
+- Consider a CSTR with inlet molar flow of 3 mol/min of A at 1 L/min, a rate law of $-r_A = k C_A$, with $k=0.34$ 1/hr. Determine the volume required for 80% conversion of A.
+
+- We need to solve $0 = F_{A0} - F_A + r_A V$ for $V$.
+
+#+BEGIN_SRC python
+import quantities as u
+from scipy.optimize import fsolve as _fsolve # give fsolve a new name
+
+Fa0 = 3 * u.mol / u.min
+Fa = Fa0*(1 - 0.8)
+nu = 1*u.L/u.min
+k = 0.34 * 1 / u.hr
+
+def objective(V):
+    Ca = Fa / nu
+    rA = -k * Ca
+    return Fa0 - Fa + rA * V
+
+def fsolve(func, t0):
+    'wrapped fsolve command to work with quantities'
+    # store the units on the initial guess
+    tU = 1 * t0.units  # units on initial guess, normalized
+
+    # wrap the function so it returns a regular number
+    def wrapped_func(t):
+        't will be unitless, so we add unit to it. t * tU has units.'
+        return float(func(t * tU))
+
+    # use the original fsolve with the wrapped function
+    sol, = _fsolve(wrapped_func, t0)
+
+    # put the original units back on the solution
+    return sol * tU
+
+print(fsolve(objective, 10*u.L))
+
+# Confirm the answer is correct with no units
+def objective_nounits(V):
+    k = 0.34 / 60.0 # 1/min    A unit conversion by hand
+    Fa0 = 3.0       # mol/min
+    Fa = Fa0 * (1 - 0.8)
+    nu = 1.0
+    Ca = Fa / nu
+    rA = -k * Ca
+    return Fa0 - Fa + rA * V
+
+print(_fsolve(objective_nounits, 10))
+#+END_SRC
+
+#+RESULTS:
+: 705.882352941 L
+: [ 705.88235294]
+
+- This was an /easy/ example because the units on the output of fsolve are the same as the units of the initial guess
+
+- The fsolve function we wrote does not have all the features of scipy.optimize.fsolve.
+  - You can add those, but it is much more complicated
+  - see http://kitchingroup.cheme.cmu.edu/blog/2013/03/22/Handling-units-with-the-quantities-module/ for a more comprehensive example
+
+- Consider the tradeoffs in this approach
+ - On one hand, we had to wrap a function in a non-intuitive way
+ - We got the units on the answer "for free" after all that work
+ - On the other hand, we did not do /any/ unit-conversions by hand
+ - We also did not have to modify our equations
+
+- PYCSE provides some of this functionality
+- You need the latest version of pycse for this functionality
+- Run this block to make sure you have the most recent version
+
+#+BEGIN_SRC python
+from setuptools.command import easy_install
+
+for pkg in ['pycse', 'quantities']:
+    easy_install.main(['-U', pkg])
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Searching for pycse
+Reading https://pypi.python.org/simple/pycse/
+Best match: pycse 1.51
+Downloading https://pypi.python.org/packages/source/p/pycse/pycse-1.51.tar.gz#md5=d6216564b6a7aa41423f066d23117265
+Processing pycse-1.51.tar.gz
+Writing /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-eBaocC/pycse-1.51/setup.cfg
+Running pycse-1.51/setup.py -q bdist_egg --dist-dir /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-eBaocC/pycse-1.51/egg-dist-tmp-qz6fBv
+Copying pycse-1.51-py2.7.egg to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
+Removing pycse 1.50 from easy-install.pth file
+Adding pycse 1.51 to easy-install.pth file
+Installing publish.py script to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/bin
+
+Installed /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pycse-1.51-py2.7.egg
+Processing dependencies for pycse
+Finished processing dependencies for pycse
+Searching for quantities
+Reading https://pypi.python.org/simple/quantities/
+Best match: quantities 0.10.1
+Downloading https://pypi.python.org/packages/source/q/quantities/quantities-0.10.1.zip#md5=75bb0571d220ea12abb31883b499f90c
+Processing quantities-0.10.1.zip
+Writing /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-IbPfuu/quantities-0.10.1/setup.cfg
+Running quantities-0.10.1/setup.py -q bdist_egg --dist-dir /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-IbPfuu/quantities-0.10.1/egg-dist-tmp-13uzSm
+Copying quantities-0.10.1-py2.7.egg to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
+Adding quantities 0.10.1 to easy-install.pth file
+
+Installed /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/quantities-0.10.1-py2.7.egg
+Processing dependencies for quantities
+Finished processing dependencies for quantities
+#+end_example
+
+PYCSE (v1.47+) provides this wrapped function pydoc:pycse.qmath.fsolve.
+
+- You should use this with skepticism and engineering judgment
+  1. It has not been used a lot
+  2. Code with units is fragile, and it is possible you will find a way to break it
+
+#+BEGIN_SRC python
+from pycse import fsolve
+import quantities as u
+
+Fa0 = 3 * u.mol / u.min
+Fa = Fa0*(1 - 0.8)
+nu = 1*u.L/u.min
+k = 0.34 * 1 / u.hr
+
+def objective(V):
+    Ca = Fa / nu
+    rA = -k * Ca
+    return Fa0 - Fa + rA * V
+
+print(fsolve(objective, 10*u.L))
+#+END_SRC
+
+#+RESULTS:
+: [ 705.88235294] L
+
+- Let us consider another approach: dimensionless equations.
+- We needed to solve \(0 = F_{A0} - F_A - k F_A / \nu V \)
+- Let us define a new variable: $G = F_A / F_{A0}$ or $F_A = G F_{A0}$
+- Let us define $\tau = V / \nu$, which is a residence time
+- Finally, note that $k \tau$ is a dimensionless quantity.
+  - Let us call it $D$
+- The equation becomes
+\(0 = 1 - G - D G \)
+  - This equation should have only dimensionless quantities.
+  - We need to find the value of D that solves it.
+  - Then we can compute $V$ with units, as $V = \frac{D \nu}{k}$
+
+#+BEGIN_SRC python
+from scipy.optimize import fsolve
+Fa0 = 3.0                 # mol/min
+Fa = Fa0 * (1.0 - 0.8)    # mol/min
+G = Fa / Fa0
+
+def objective(D):
+    return 1 - G - D * G
+
+Dsol, = fsolve(objective, 1.0)
+
+import quantities as u
+nu = 1 * u.L / u.min
+k = 0.34 * 1 / u.hr
+
+# V = D * nu / k
+print('Volume = {}'.format(Dsol * nu / k))   # this prints oddly
+                                             # (time/time) because the
+                                             # units are not simplified
+print((Dsol * nu / k).simplified)
+#+END_SRC
+
+#+RESULTS:
+: Volume = 11.7647058824 h*L/min
+: 0.705882352941 m**3
+
+- This method has a different set of tradeoffs
+  - We had to derive dimensionless equations
+    - And the result looks trivial to solve in this case
+  - Our dimensionless quantities were easy to check in this case
+  - On the other hand, we did not do any unit conversions at the end
+  - We used the standard fsolve function
+  - We avoided wrapping the function
+
+** quantities in odeint
+
+- The units on the output of odeint are the units of the initial condition
+- Let us examine a constant volume batch reactor with $-r_A = k C_A$, and $k = 0.0006$ L/mol/s, and ask what is the concentration of $A$ after 10 minutes if the initial concentration is $C_A(t=0) = 1$ mol / L.
+
+\( \frac{dC_A}{dt} = r_A \)
+
+*** Analytical solution with no units
+- Here we know the solution $C_A = C_{A0} \exp(-k t)$. We evaluate it for future reference.
+#+BEGIN_SRC python
+import numpy as np
+Ca0 = 1
+k = 0.0006 * 60     # L / mol / min
+t = 10              # min
+print(Ca0 * np.exp(-k * t))
+#+END_SRC
+
+#+RESULTS:
+: 0.697676326071
+
+*** Numerical solution with no units
+
+- Now we re-solve the problem, using odeint with no units.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+Ca0 = 1.0
+k = 0.0006 * 60  # unit conversion by hand to L / mol / min
+
+def dCadt(Ca, t):
+    ra = -k * Ca
+    return ra
+
+tspan = np.linspace(0, 10) # this is in minutes
+
+sol = odeint(dCadt, Ca0, tspan)
+print(sol[-1, 0])
+#+END_SRC
+
+#+RESULTS:
+: 0.697676302326
+
+Same answer. Still no units.
+
+*** Using quantities with a wrapped odeint function		     :gotcha:
+
+- Let us consider wrapping the odeint function
+
+- This is subtle. We have make sure the derivative value is scaled to the correct units.
+  - Otherwise the derivative will not be in consistent units, in this case it would be mol / L / s, while the time step would be in minutes
+  - This is not obvious that should have to do that!
+  - That is one very big downside to this approach
+  - And it underscores the need to test new approaches
+
+#+BEGIN_SRC python
+import quantities as u
+import numpy as np
+from scipy.integrate import odeint as _odeint
+
+Ca0 = 1.0 * u.mol / u.L
+k = 0.0006 * 1 / u.s
+
+def dCadt(Ca, t):
+    ra  = -k * Ca
+    return ra
+
+def odeint(dydx, y0, xspan):
+    # get x units
+    xU = 1.0 * xspan[0].units
+    yU = 1.0 * y0.units
+
+    def wrapped_dydx(y, x):
+        v = dydx(y * yU, x * xU).rescale(yU / xU)
+        return float(v)
+
+    sol = _odeint(wrapped_dydx, float(y0), [float(x) for x in xspan])
+    return sol * yU
+
+tspan = np.linspace(0.0, 10.0)*u.min
+
+sol = odeint(dCadt, Ca0, tspan)
+print('The answer is {}'.format(sol[-1, 0]))
+#+END_SRC
+
+#+RESULTS:
+: The answer is 0.697676302326 mol/L
+
+- We finally get the right answer, with the correct units
+
+- PYCSE offers a limited support for this.
+- This is a fragile approach, but one that you can check pretty easily.
+
+#+BEGIN_SRC python
+import quantities as u
+import numpy as np
+from pycse import odeint
+
+Ca0 = 1.0 * u.mol / u.L
+k = 0.0006 * 1 / u.s
+
+def dCadt(Ca, t):
+    ra  = -k * Ca
+    return ra
+
+# This does not work! The units are not scaled properly
+#tspan = np.linspace(0.0, 10.0)*u.min
+tspan = np.linspace(0.0, 600.0)*u.sec
+
+sol = odeint(dCadt, Ca0, tspan)
+print(sol[-1, 0])
+#+END_SRC
+
+#+RESULTS:
+: 0.697676302326 mol/L
+
+- This last example underscores again the need to be careful when working with units.
+
+
+* Advanced usage of fsolve
+
+- We have thus far used fsolve in the simplest way possible.
+- We have used the output of the function, or the success of the function as an indication that it worked
+  - We may also have used the answer in our objective function to confirm we got an answer near zero.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.optimize import fsolve
+
+def objective(x):
+    return np.exp(x) - 2.0
+
+sol, info, ier, message = fsolve(objective, 0.5, full_output=True)
+if ier == 1:
+    print(message)
+else:
+    print('fsolve did not finish correctly. Check your work')
+
+print('''
+Nsteps taken = {info[nfev]}
+objective(sol) = {info[fvec]}'''.format(info=info))
+#+END_SRC
+
+#+RESULTS:
+: The solution converged.
+:
+: Nsteps taken = 8
+: objective(sol) = [ 0.]
+
+- This kind of information is especially helpful in longer programs, or when you embed fsolve in a loop
+- You can use programming to catch errors and handle them gracefully
+  - This is outside the scope of this course
+
+- There are many more options to consider with fsolve that control a variety of properties.
+
+pydoc:scipy.optimize.fsolve
+
+#+BEGIN_SRC python
+from scipy.optimize import fsolve
+print(help(fsolve))
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Help on function fsolve in module scipy.optimize.minpack:
+
+fsolve(func, x0, args=(), fprime=None, full_output=0, col_deriv=0,
+       xtol=1.49012e-08, maxfev=0, band=None, epsfcn=None, factor=100,
+       diag=None)
+    Find the roots of a function.
+
+    Return the roots of the (non-linear) equations defined by
+    ``func(x) = 0`` given a starting estimate.
+
+    Parameters
+    ----------
+    func : callable ``f(x, *args)``
+        A function that takes at least one (possibly vector) argument.
+    x0 : ndarray
+        The starting estimate for the roots of ``func(x) = 0``.
+    args : tuple, optional
+        Any extra arguments to `func`.
+    fprime : callable(x), optional
+        A function to compute the Jacobian of `func` with derivatives
+        across the rows. By default, the Jacobian will be estimated.
+    full_output : bool, optional
+        If True, return optional outputs.
+    col_deriv : bool, optional
+        Specify whether the Jacobian function computes derivatives down
+        the columns (faster, because there is no transpose operation).
+    xtol : float
+        The calculation will terminate if the relative error between two
+        consecutive iterates is at most `xtol`.
+    maxfev : int, optional
+        The maximum number of calls to the function. If zero, then
+        ``100*(N+1)`` is the maximum where N is the number of elements
+        in `x0`.
+    band : tuple, optional
+        If set to a two-sequence containing the number of sub- and
+        super-diagonals within the band of the Jacobi matrix, the
+        Jacobi matrix is considered banded (only for ``fprime=None``).
+    epsfcn : float, optional
+        A suitable step length for the forward-difference
+        approximation of the Jacobian (for ``fprime=None``). If
+        `epsfcn` is less than the machine precision, it is assumed
+        that the relative errors in the functions are of the order of
+        the machine precision.
+    factor : float, optional
+        A parameter determining the initial step bound
+        (``factor * || diag * x||``).  Should be in the interval
+        ``(0.1, 100)``.
+    diag : sequence, optional
+        N positive entries that serve as a scale factors for the
+        variables.
+
+    Returns
+    -------
+    x : ndarray
+        The solution (or the result of the last iteration for
+        an unsuccessful call).
+    infodict : dict
+        A dictionary of optional outputs with the keys:
+
+          * 'nfev' : number of function calls
+          * 'njev' : number of Jacobian calls
+          * 'fvec' : function evaluated at the output
+          * 'fjac' : the orthogonal matrix, q, produced by the QR
+                    factorization of the final approximate Jacobian
+                    matrix, stored column wise
+          * 'r' : upper triangular matrix produced by QR factorization
+                  of the same matrix
+          * 'qtf': the vector ``(transpose(q) * fvec)``
+
+    ier : int
+        An integer flag.  Set to 1 if a solution was found, otherwise refer
+        to `mesg` for more information.
+    mesg : str
+        If no solution is found, `mesg` details the cause of failure.
+
+    See also
+    --------
+    root : Interface to root finding algorithms for multivariate
+           functions. See the 'hybr' `method` in particular.
+
+    Notes
+    -----
+    ``fsolve`` is a wrapper around MINPACK's hybrd and hybrj algorithms.
+
+None
+#+end_example
+
+See http://kitchingroup.cheme.cmu.edu/blog/category/nonlinear-algebra/ for many examples of using fsolve in python.
+
+
+- Finally, you may be interested in another solver that has more advanced features pydoc:scipy.optimize.root
+- It is similar to fsolve, but offers more flexibility in the methods
+
+pydoc:scipy.optimize.root
+#+BEGIN_SRC python
+from scipy.optimize import root
+print(help(root))
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Help on function root in module scipy.optimize._root:
+
+root(fun, x0, args=(), method='hybr', jac=None, tol=None,
+     callback=None, options=None)
+    Find a root of a vector function.
+
+    .. versionadded:: 0.11.0
+
+    Parameters
+    ----------
+    fun : callable
+        A vector function to find a root of.
+    x0 : ndarray
+        Initial guess.
+    args : tuple, optional
+        Extra arguments passed to the objective function and its Jacobian.
+    method : str, optional
+        Type of solver.  Should be one of
+
+            - 'hybr'
+            - 'lm'
+            - 'broyden1'
+            - 'broyden2'
+            - 'anderson'
+            - 'linearmixing'
+            - 'diagbroyden'
+            - 'excitingmixing'
+            - 'krylov'
+
+    jac : bool or callable, optional
+        If `jac` is a Boolean and is True, `fun` is assumed to return the
+        value of Jacobian along with the objective function. If False, the
+        Jacobian will be estimated numerically.
+        `jac` can also be a callable returning the Jacobian of `fun`. In
+        this case, it must accept the same arguments as `fun`.
+    tol : float, optional
+        Tolerance for termination. For detailed control, use solver-specific
+        options.
+    callback : function, optional
+        Optional callback function. It is called on every iteration as
+        ``callback(x, f)`` where `x` is the current solution and `f`
+        the corresponding residual. For all methods but 'hybr' and 'lm'.
+    options : dict, optional
+        A dictionary of solver options. E.g. `xtol` or `maxiter`, see
+        ``show_options('root', method)`` for details.
+
+    Returns
+    -------
+    sol : Result
+        The solution represented as a ``Result`` object.
+        Important attributes are: ``x`` the solution array, ``success`` a
+        Boolean flag indicating if the algorithm exited successfully and
+        ``message`` which describes the cause of the termination. See
+        `Result` for a description of other attributes.
+
+    Notes
+    -----
+    This section describes the available solvers that can be selected by the
+    'method' parameter. The default method is *hybr*.
+
+    Method *hybr* uses a modification of the Powell hybrid method as
+    implemented in MINPACK [1]_.
+
+    Method *lm* solves the system of nonlinear equations in a least squares
+    sense using a modification of the Levenberg-Marquardt algorithm as
+    implemented in MINPACK [1]_.
+
+    Methods *broyden1*, *broyden2*, *anderson*, *linearmixing*,
+    *diagbroyden*, *excitingmixing*, *krylov* are inexact Newton methods,
+    with backtracking or full line searches [2]_. Each method corresponds
+    to a particular Jacobian approximations. See `nonlin` for details.
+
+    - Method *broyden1* uses Broyden's first Jacobian approximation, it is
+      known as Broyden's good method.
+    - Method *broyden2* uses Broyden's second Jacobian approximation, it
+      is known as Broyden's bad method.
+    - Method *anderson* uses (extended) Anderson mixing.
+    - Method *Krylov* uses Krylov approximation for inverse Jacobian. It
+      is suitable for large-scale problem.
+    - Method *diagbroyden* uses diagonal Broyden Jacobian approximation.
+    - Method *linearmixing* uses a scalar Jacobian approximation.
+    - Method *excitingmixing* uses a tuned diagonal Jacobian
+      approximation.
+
+    .. warning::
+
+        The algorithms implemented for methods *diagbroyden*,
+        *linearmixing* and *excitingmixing* may be useful for specific
+        problems, but whether they will work may depend strongly on the
+        problem.
+
+    References
+    ----------
+    .. [1] More, Jorge J., Burton S. Garbow, and Kenneth E. Hillstrom.
+       1980. User Guide for MINPACK-1.
+    .. [2] C. T. Kelley. 1995. Iterative Methods for Linear and Nonlinear
+        Equations. Society for Industrial and Applied Mathematics.
+        <http://www.siam.org/books/kelley/>
+
+    Examples
+    --------
+    The following functions define a system of nonlinear equations and its
+    jacobian.
+
+    >>> def fun(x):
+    ...     return [x[0]  + 0.5 * (x[0] - x[1])**3 - 1.0,
+    ...             0.5 * (x[1] - x[0])**3 + x[1]]
+
+    >>> def jac(x):
+    ...     return np.array([[1 + 1.5 * (x[0] - x[1])**2,
+    ...                       -1.5 * (x[0] - x[1])**2],
+    ...                      [-1.5 * (x[1] - x[0])**2,
+    ...                       1 + 1.5 * (x[1] - x[0])**2]])
+
+    A solution can be obtained as follows.
+
+    >>> from scipy import optimize
+    >>> sol = optimize.root(fun, [0, 0], jac=jac, method='hybr')
+    >>> sol.x
+    array([ 0.8411639,  0.1588361])
+
+None
+#+end_example
+
+** Parameterized fsolve
+Suppose we want to solve a nonlinear algebra problem for many values of a parameter.
+
+Let the reaction $\ce{A -> B}$ take place in a CSTR with a volume of 10 L, and $r = 2.3 C_A$.
+
+The inlet concentration is 1.5 mol / L of A.
+
+You need to compute the exit conversion for a range of volumetric flows.
+
+We know that we are solving:
+\(0 = Fa0 - Fa + r_A V\)
+
+We have to resolve this problem /many/ times for different values of v0.
+
+Rather than redefine the equation over and over, we parameterize the objective function with an additional argument.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+V = 10.0
+Ca0 = 1.5
+
+# v0 is a /parameter/
+def objective(Ca, v0):
+    ra = -2.3 * Ca
+    return Ca0 * v0 - Ca * v0 + ra * V
+
+v_array = np.linspace(1, 20)
+
+ig = 0.01  # assume high conversion for initial guess
+
+# we use the parameter like this
+print(fsolve(objective, ig, args=(1.0,)))
+print(fsolve(objective, ig, args=(2.0,)))
+
+
+# use list comprehension to do the loop
+Ca_exit = [fsolve(objective, ig, args=(v,)) for v in v_array]
+
+X = (Ca0 - np.array(Ca_exit)) / Ca0
+plt.plot(v_array, X)
+plt.xlabel('volumetric flow')
+plt.ylabel('exit conversion')
+plt.savefig('images/parametrized-cstr.png')
+#+END_SRC
+
+#+RESULTS:
+: [ 0.0625]
+: [ 0.12]
+
+
+[[./images/parametrized-cstr.png]]
+
+
+* Advanced usage of odeint
+
+- We have also not used the odeint function to its full capacity either
+- We can also get =odeint= to tell us about whether it succeeded or not
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+
+def dydx(y, x):
+    return y
+
+y0 = 1
+xspan = np.linspace(0,2)
+
+# Let us get the extra output
+sol, infodict = odeint(dydx, y0, xspan, full_output=True)
+print(infodict)
+
+print(infodict['message'])
+
+# you can check for success like this
+if infodict['message'] != 'Integration successful.':
+    print('Something went wrong')
+    print(infodict['message'])
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+{'nfe': array([17, 23, 25, 27, 31, 33, 33, 35, 35, 37, 39, 39, 41, 41, 43, 43, 47,
+       47, 47, 51, 51, 53, 53, 53, 55, 55, 55, 57, 57, 59, 59, 59, 61, 61,
+       63, 63, 63, 65, 65, 65, 67, 67, 67, 67, 69, 69, 69, 71, 71], dtype=int32), 'nje': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0], dtype=int32), 'tolsf': array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]), 'nqu': array([3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6,
+       6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+       7, 7, 7], dtype=int32), 'lenrw': 36, 'tcur': array([ 0.04593084,  0.10739551,  0.13812784,  0.16886017,  0.23032484,
+        0.30103231,  0.30103231,  0.37173977,  0.37173977,  0.44244724,
+        0.51315471,  0.51315471,  0.58386218,  0.58386218,  0.65456965,
+        0.65456965,  0.78619325,  0.78619325,  0.78619325,  0.89166582,
+        0.89166582,  0.99713839,  0.99713839,  0.99713839,  1.10261096,
+        1.10261096,  1.10261096,  1.20808353,  1.20808353,  1.3135561 ,
+        1.3135561 ,  1.3135561 ,  1.41902867,  1.41902867,  1.52450124,
+        1.52450124,  1.52450124,  1.66243691,  1.66243691,  1.66243691,
+        1.80037259,  1.80037259,  1.80037259,  1.80037259,  1.93830826,
+        1.93830826,  1.93830826,  2.07624394,  2.07624394]), 'hu': array([ 0.01536617,  0.03073233,  0.03073233,  0.03073233,  0.03073233,
+        0.07070747,  0.07070747,  0.07070747,  0.07070747,  0.07070747,
+        0.07070747,  0.07070747,  0.07070747,  0.07070747,  0.07070747,
+        0.07070747,  0.1316236 ,  0.1316236 ,  0.1316236 ,  0.10547257,
+        0.10547257,  0.10547257,  0.10547257,  0.10547257,  0.10547257,
+        0.10547257,  0.10547257,  0.10547257,  0.10547257,  0.10547257,
+        0.10547257,  0.10547257,  0.10547257,  0.10547257,  0.10547257,
+        0.10547257,  0.10547257,  0.13793568,  0.13793568,  0.13793568,
+        0.13793568,  0.13793568,  0.13793568,  0.13793568,  0.13793568,
+        0.13793568,  0.13793568,  0.13793568,  0.13793568]), 'imxer': -1, 'leniw': 21, 'tsw': array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]), 'message': 'Integration successful.', 'nst': array([ 7, 10, 11, 12, 14, 15, 15, 16, 16, 17, 18, 18, 19, 19, 20, 20, 21,
+       21, 21, 22, 22, 23, 23, 23, 24, 24, 24, 25, 25, 26, 26, 26, 27, 27,
+       28, 28, 28, 29, 29, 29, 30, 30, 30, 30, 31, 31, 31, 32, 32], dtype=int32), 'mused': array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1], dtype=int32)}
+Integration successful.
+#+end_example
+
+- the information in infodict may be helpful in debugging problems
+- there are many more options to odeint that may be helpful in some problems
+
+pydoc:scipy.integrate.odeint
+
+#+BEGIN_SRC python
+from scipy.integrate import odeint
+help(odeint)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Help on function odeint in module scipy.integrate.odepack:
+
+odeint(func, y0, t, args=(), Dfun=None, col_deriv=0, full_output=0,
+       ml=None, mu=None, rtol=None, atol=None, tcrit=None, h0=0.0,
+       hmax=0.0, hmin=0.0, ixpr=0, mxstep=0, mxhnil=0, mxordn=12,
+       mxords=5, printmessg=0)
+    Integrate a system of ordinary differential equations.
+
+    Solve a system of ordinary differential equations using lsoda from the
+    FORTRAN library odepack.
+
+    Solves the initial value problem for stiff or non-stiff systems
+    of first order ode-s::
+
+        dy/dt = func(y,t0,...)
+
+    where y can be a vector.
+
+    Parameters
+    ----------
+    func : callable(y, t0, ...)
+        Computes the derivative of y at t0.
+    y0 : array
+        Initial condition on y (can be a vector).
+    t : array
+        A sequence of time points for which to solve for y.  The initial
+        value point should be the first element of this sequence.
+    args : tuple, optional
+        Extra arguments to pass to function.
+    Dfun : callable(y, t0, ...)
+        Gradient (Jacobian) of `func`.
+    col_deriv : bool, optional
+        True if `Dfun` defines derivatives down columns (faster),
+        otherwise `Dfun` should define derivatives across rows.
+    full_output : bool, optional
+        True if to return a dictionary of optional outputs as the second output
+    printmessg : bool, optional
+        Whether to print the convergence message
+
+    Returns
+    -------
+    y : array, shape (len(t), len(y0))
+        Array containing the value of y for each desired time in t,
+        with the initial value `y0` in the first row.
+    infodict : dict, only returned if full_output == True
+        Dictionary containing additional output information
+
+        =======  ============================================================
+        key      meaning
+        =======  ============================================================
+        'hu'     vector of step sizes successfully used for each time step.
+        'tcur'   vector with the value of t reached for each time step.
+                 (will always be at least as large as the input times).
+        'tolsf'  vector of tolerance scale factors, greater than 1.0,
+                 computed when a request for too much accuracy was detected.
+        'tsw'    value of t at the time of the last method switch
+                 (given for each time step)
+        'nst'    cumulative number of time steps
+        'nfe'    cumulative number of function evaluations for each time step
+        'nje'    cumulative number of jacobian evaluations for each time step
+        'nqu'    a vector of method orders for each successful step.
+        'imxer'  index of the component of largest magnitude in the
+                 weighted local error vector (e / ewt) on an error return, -1
+                 otherwise.
+        'lenrw'  the length of the double work array required.
+        'leniw'  the length of integer work array required.
+        'mused'  a vector of method indicators for each successful time step:
+                 1: adams (nonstiff), 2: bdf (stiff)
+        =======  ============================================================
+
+    Other Parameters
+    ----------------
+    ml, mu : int, optional
+        If either of these are not None or non-negative, then the
+        Jacobian is assumed to be banded.  These give the number of
+        lower and upper non-zero diagonals in this banded matrix.
+        For the banded case, `Dfun` should return a matrix whose
+        columns contain the non-zero bands (starting with the
+        lowest diagonal).  Thus, the return matrix from `Dfun` should
+        have shape ``len(y0) * (ml + mu + 1)`` when ``ml >=0`` or ``mu >=0``.
+    rtol, atol : float, optional
+        The input parameters `rtol` and `atol` determine the error
+        control performed by the solver.  The solver will control the
+        vector, e, of estimated local errors in y, according to an
+        inequality of the form ``max-norm of (e / ewt) <= 1``,
+        where ewt is a vector of positive error weights computed as
+        ``ewt = rtol * abs(y) + atol``.
+        rtol and atol can be either vectors the same length as y or scalars.
+        Defaults to 1.49012e-8.
+    tcrit : ndarray, optional
+        Vector of critical points (e.g. singularities) where integration
+        care should be taken.
+    h0 : float, (0: solver-determined), optional
+        The step size to be attempted on the first step.
+    hmax : float, (0: solver-determined), optional
+        The maximum absolute step size allowed.
+    hmin : float, (0: solver-determined), optional
+        The minimum absolute step size allowed.
+    ixpr : bool, optional
+        Whether to generate extra printing at method switches.
+    mxstep : int, (0: solver-determined), optional
+        Maximum number of (internally defined) steps allowed for each
+        integration point in t.
+    mxhnil : int, (0: solver-determined), optional
+        Maximum number of messages printed.
+    mxordn : int, (0: solver-determined), optional
+        Maximum order to be allowed for the non-stiff (Adams) method.
+    mxords : int, (0: solver-determined), optional
+        Maximum order to be allowed for the stiff (BDF) method.
+
+    See Also
+    --------
+    ode : a more object-oriented integrator based on VODE.
+    quad : for finding the area under a curve.
+
+#+end_example
+
+See http://kitchingroup.cheme.cmu.edu/blog/category/ode/ for many examples of solving ordinary differential equations in python including root finding.
+
+* Summary
+
+You should have learned:
+
+1. How stoichiometry determines changes in the moles of species in a reaction
+2. How the relative rates of species production are related by stoichiometry
+3. Mole balances for a batch reactor, continuously stirred tank reactor, and plug flow reactor
+4. Mole balances for reactors with pressure drops and for reactions that change the total number of moles
+
+You have seen examples of:
+1. solving nonlinear equations
+2. integrating ordinary differential equations

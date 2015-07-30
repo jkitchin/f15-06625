@@ -1,0 +1,288 @@
+#+STARTUP: showall
+
+* Course software setup
+
+- Your laptops have already been setup with the software you need for this course
+  + Emacs + jmax
+  + Python
+  + git 
+  + ssh
+
+** Course setup
+
+This course is run by Techela (Technology Enhanced Learning and Assessment), developed by Prof. Kitchin. This software uses Emacs as a content generation and delivery system, with git, a distributed version control software, to securely share files between instructors and students.
+
+You will install the course like this:
+
+- Open Emacs
+- Type Alt-x techela
+- You will be prompted for a course name. Type f14-06625 and press enter.
+- You will be prompted for a userid. Enter your andrewid and press enter.
+- You will be prompted for your full name. Type that in, and press enter.
+- Emacs will then download the course for you, and send me your public ssh key so you can access the assignments. After I register your ssh key, you will have access to assignments.
+- Emacs will keep the course notes up to date, and tell you when assignments are due, etc...
+
+
+- Lecture notes are written in a format known as org-mode, which is a lightweight, text-based markup language
+- The notes are best viewed in Emacs, which knows how to render equations and figures, and allows you to run the code and capture the results.
+
+** Python setup
+
+- Enthought Canopy is already installed  
+   - It has most of what we will need this semester
+- You should request an academic license at https://www.enthought.com/products/canopy/ as it will give you access to a lot of additional packages you may find helpful.
+
+- We will install new packages as needed
+
+*** Additional python packages to install
+
+Put your cursor in this code block and run it (C-c C-c). This will install some additional packages we will use in the course.
+
+#+BEGIN_SRC python
+from setuptools.command import easy_install
+
+for pkg in ['pycse', 'quantities', 'pint',
+            'uncertainties', 'jedi', 'rope']:
+    easy_install.main(['-U', pkg])
+#+END_SRC
+
+After you install those, this code block will tell you about the installed versions of the most important libraries we will use in Python.
+
+#+BEGIN_SRC python
+import numpy
+print('numpy version {}'.format(numpy.__version__))
+
+import scipy
+print('scipy version {}'.format(scipy.__version__))
+
+import matplotlib
+print('matplotlib version {}'.format(matplotlib.__version__))
+
+import quantities
+print('quantities version {}'.format(quantities.__version__))
+
+import uncertainties 
+print('uncertainties version {}'.format(uncertainties.__version__))
+#+END_SRC
+
+#+RESULTS:
+: numpy version 1.8.0
+: scipy version 0.14.0
+: matplotlib version 1.3.1
+: quantities version 0.10.1
+: uncertainties version 2.4.6
+
+** Assignments and exercises
+   :PROPERTIES:
+   :ID:       597954a3-958b-4e4d-bbcd-ac2c33a527dd
+   :END:
+
+- Your ssh public key must be registered for you to participate in the course.
+  - This should be automatically sent to me when you open the course
+  - I will send a confirmation email when I get it and it is registered.
+
+- Most assignments will be listed as links in the syllabus
+  + When you click on the link, Emacs will download a copy of the assignment to your computer and open it
+
+  + You will complete the assignment in Emacs. This will typically mean typing in narrative text to describe what you are doing, the code that solves your problem, running the code to get the output, and discussing the results.
+
+  + You will complete your assignments using the same tool we use in class, Emacs + org-mode + Python.
+
+  + You will complete the assignment, and "turn it in" by selecting "Turn assignment in" from the techela menu, after you have completed the assignment.
+
+  + Turning an assignment in requires you to be connected to the internet
+
+  + Some information about your computer will be collected and turned in with your work.
+
+- Sometimes there will be "Exercises" that we do in class. These will not always be graded, but they will be used as part of a participation grade. Make sure you bring your computer to class.
+
+* Introduction to the course
+
+** What is Chemical Reaction Engineering?
+
+- The design of processes that transform lower value feedstocks to higher value products through chemical reactions.
+
+We answer questions such as:
+1) Can we make a product at an economical rate?
+2) How big should a reactor be to make a product at some rate?
+3) How much heat should I remove from a reactor to maintain a safe temperature?
+4) What kind of reactor gives the highest yield?
+5) etc...
+
+** We are engineers
+
+We get paid to answer those questions 
+- /quantitatively/
+  - It will rarely be sufficient to qualitatively answer questions 
+- with uncertainty and risk analysis
+- even when the problems are very hard
+
+** Role of computational tools
+
+- Many problems are too hard to solve by hand and must be solved numerically. 
+  - For these we use computational methods
+
+- We will extensively use Emacs in this class
+ + to read course notes
+ + to solve computational problems
+ + to document our work, analysis, and discussion
+ + to turn in our work
+
+- We will extensively use Python to numerically solve problems in this course.
+
+- Why?
+  + Python is /free/
+  + You can use this anywhere you go
+  + Python does everything we need and much more
+  + Python integrates into org-mode very well, enabling these notes to exist.
+
+- Almost every class will use and show examples of python
+- These notes will be available to you through the syllabus
+- You should make sure you can run the examples, /and that you get the same results/
+- *Ask questions when you do not understand*
+
+** Python examples
+
+*** A simple plot
+
+Here we import functionality from python modules to get array math functions and to make a plot. 
+Put your cursor in this code block and press C-c C-c to run the block.
+
+Let us review some python documentation. Click on these links to learn more about these functions:
+pydoc:numpy.linspace
+pydoc:numpy.exp
+
+pydoc:matplotlib.pyplot.plot
+pydoc:matplotlib.pyplot.xlabel
+pydoc:matplotlib.pyplot.ylabel
+pydoc:matplotlib.pyplot.savefig
+
+#+BEGIN_SRC python
+import numpy as np               # standard import for array functions
+import matplotlib.pyplot as plt  # standard import for plotting
+
+# Define some constants
+R = 8.314   # A float
+T = 300     # an integer
+
+# an array of values linearly spaced
+deltaG = np.linspace(-8000, -12000)
+
+# plotting commands
+plt.plot(deltaG, np.exp(-deltaG / R / T))
+plt.xlabel('$\Delta G$')
+plt.ylabel('K')
+plt.savefig('images/K.png')
+#+END_SRC
+
+#+RESULTS:
+
+[[./images/K.png]]
+
+Note: to get the image to show inline, you must manually put a figure link in the place you want it, and then run the code block.
+ 
+*** Solve nonlinear equations
+elisp:org-toggle-latex-overlays 
+
+Suppose we know K at some temperature, and we want to compute the corresponding $\Delta G$? Say we know K = 100 at 300K.  We need to solve $100 = e^{-\Delta G/RT}$ for $\Delta G$ at T = 300 K. Numerically,  we need to find the value of $\Delta G$ that solves this equivalent equation:
+
+\[0 = 100 - e^{-\Delta G/RT}\]
+
+We have to provide a guess for the solution because this is a nonlinear function we are solving. We could solve this problem analytically, but we are not going to. Instead, we will use the analytical solution to show our numerical solution is correct.
+
+pydoc:scipy.optimize.fsolve
+
+Put your cursor in this code block and press Ctrl-c Ctrl-c (C-c C-c) to run the block.
+
+#+BEGIN_SRC python
+import numpy as np                  # array based math functions
+from scipy.optimize import fsolve   # nonlinear algebra solver
+
+R = 8.314  # J/mol/K
+T = 300    # K
+
+# define a function that equals zero at the solution
+def objective(deltaG):
+    return 100 - np.exp(-deltaG / R / T)
+
+guess = -11000   # guess based on the graph we saw before
+ans, = fsolve(objective, guess)
+
+print(ans)
+print(-np.log(100) * R * T)  # analytical solution
+#+END_SRC
+
+
+
+You can see the two solutions are equivalent. Checkout pydoc:numpy.log
+
+
+*** Solving another nonlinear algebra problem
+elisp:org-toggle-latex-overlays  
+
+Given \(C_A = C_{A0} e^{-k t}\) with $C_{A0} =1$ mol/L, and $k=0.23$ 1/s, how long will it take before $C_A$ = 0.2 M? We want to know at what time is this equation true: \(0.2 - C_{A0} e^{-k t} = 0\). We define two functions here, one for $C_A$, and one for the objective function ($f(x)=0$). That is so we can evaluate $C_A(t_{soln})$ conveniently later.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.optimize import fsolve
+
+CA0 = 1.0 # mol / l
+k = 0.23  # 1/s
+
+def Ca(t):
+    return CA0 * np.exp(-k * t)
+
+def f(t):
+    z = 0.2 - Ca(t)
+    return z
+
+ans, = fsolve(f, 2.0)
+print('Ca = {0} at t = {1} s'.format(Ca(ans), ans))
+#+END_SRC
+
+
+You should practice with these examples. Review these links:
+
+pydoc:scipy.optimize.fsolve
+
+pydoc:numpy.exp  pydoc:numpy.log
+
+* Getting help
+
+- I am expecting you will need help. Emacs and Python are probably new for you.
+
+You may find these resources helpful:
+- Class
+  + Come to class everyday.
+  + Watch me use Emacs and Python
+  + Ask questions about things you do not understand 
+
+- Learning python
+  + http://learnpythonthehardway.org/book/
+  + http://interactivepython.org/courselib/static/thinkcspy/index.html
+
+- Python documentation
+  + Builtin modules - http://docs.python.org/2/library/index.html
+
+- Python and scientific computing
+  + http://kitchingroup.cheme.cmu.edu/pycse/ (there is also a pdf version)
+  + Numerical python - http://docs.scipy.org/doc/numpy/reference/
+  + Scientific python - http://docs.scipy.org/doc/scipy/reference/
+
+- Training from Enthought - free if you get a free academic account 
+https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/courses
+ 
+  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/INTRO_TO_PYTHON][Python Essentials]]
+  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/NUMPY][Numpy]]
+  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/SCIPY][Scipy]]
+  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/ADVANCED_PYTHON][Advanced Python]]
+
+- Writing equations in LaTeX: http://www.codecogs.com/latex/eqneditor.php
+
+* Final points
+
+1. Make sure you run M-x techela on /your/ computer ASAP
+2. You can only use techela from your computer
+3. Do not delete ~/techela or the emacs (jmax) shortcut on your desktop
+
+Your first assignment is due on [2014-08-27 Wed] assignment:intro. 

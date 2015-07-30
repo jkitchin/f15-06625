@@ -1,0 +1,315 @@
+* Jake
+- This function has an arbitrary additional variable 'sign'
+
+** fmin
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-2, 2)
+
+
+def parabola(x, A, B, C, sign):
+    ''' The basic form of a parabola'''
+    return sign * (A * x**2.0) + (B * x) + C
+
+# When we define the function, we need to specify all of the variables, or the code won't run:
+
+# try running this code block
+data = parabola(x, A=1.0, B=3.0, C=-10)
+
+plt.plot(x, data)
+plt.xlim(-2, 2)
+plt.ylim(-0.2, 4)
+plt.savefig('./images/failabola.png')
+
+#  [[./images/failabola.png]]
+# No figure   :(
+#+END_SRC
+
+#+RESULTS:
+
+- In order to avoid this annoying error for functions which require a large number of input variables, we can specify our own default values.
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-2, 2)
+
+
+# adding '=some_thing' will specify the default for a variable
+def parabola(x, A=1.0, B=0.0, C=0.0, sign=1):
+    ''' The basic form of a parabola'''
+    return sign * (A * x**2.0) + (B * x) + C
+
+# Now I can run the function without any additional variables
+data = parabola(x)
+
+plt.plot(x, data)
+plt.xlim(-2, 2)
+plt.ylim(-0.2, 4)
+plt.savefig('./images/winabola.png')
+
+#  [[./images/winabola.png]]
+#+END_SRC
+
+#+RESULTS:
+
+- Try adding your own variables to the parabola function to get a sense for what they do
+
+
+
+- Now lets take a closer look at the fmin function.
+pydoc:scipy.optimize.fmin
+
+- This function is designed to find a MINIMUM value of a function.
+
+- For a 2D function, this works by taking two points, choosing the lower value and then selecting two new points around that one (rinse and repeat):
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import fmin
+
+x = np.linspace(-2, 2)
+
+def parabola(x, A=1.0, B=0.0, C=0.0, sign=1):
+    ''' The basic form of a parabola'''
+    return sign * (A * x**2.0) + (B * x) + C
+
+data = parabola(x)
+
+initial_guess = 1.9  # This is critical for more complex functions
+
+# I don't like things printing when I don't ask them to
+# so I set disp=0 which supresses the standard output message
+minimum, = fmin(parabola, initial_guess, disp=0)
+
+plt.plot(x, data)
+plt.scatter(initial_guess, parabola(initial_guess),  # plot the initial guess
+            marker='o',
+            color='g',
+            s=25)
+plt.scatter(minimum, parabola(minimum),  # plot the min value
+            marker='o',
+            color='r',
+            s=25)
+plt.xlim(-2, 2)
+plt.ylim(-0.2, 4)
+plt.savefig('./images/minabola.png')
+
+#  [[./images/minabola.png]]
+#+END_SRC
+
+#+RESULTS:
+
+- If the function doesn't have a minimum, bad things happen!
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import fmin
+
+x = np.linspace(-2, 2)
+
+
+def parabola(x, A=1.0, B=0.0, C=0.0, sign=1):
+    ''' The basic form of a parabola'''
+    return sign * (A * x**2.0) + (B * x) + C
+
+data = parabola(x)
+
+initial_guess = 1.0
+
+# Remember that setting disp=0 too soon can be counter productive!
+minimum, = fmin(parabola, initial_guess, disp=0, args=(1.0, 0.0, 0.0, -1))
+
+plt.plot(x, data)
+plt.scatter(initial_guess, parabola(initial_guess),  # plot the initial guess
+            marker='o',
+            color='g',
+            s=25)
+plt.scatter(minimum, parabola(minimum),  # plot the min value
+            marker='o',
+            color='r',
+            s=25)
+plt.savefig('./images/badabola.png')
+
+#  [[./images/badabola.png]]
+#+END_SRC
+
+#+RESULTS:
+
+- WELL, that's not a very low number. Did we find the minimum?
+
+- What happened?
+
+- How would you begin to debug something like this???
+
+** fmin from the notes
+
+- Now we take a look at a more complex function, but with similar concepts.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+k = 30.0
+CX0 = 2.5 # kmol / m^3
+v0 = 12.0 # m^3 / min
+FX0 = CX0 * v0
+FY0 = 0.0
+
+def dFdV(F, V):
+    Fx, Fy = F
+    Cx = Fx / v0
+    r = k * Cx
+    rx = -r
+    ry =  r
+    dFxdV = rx
+    dFydV = ry
+    return [dFxdV, dFydV]
+
+V_Y = 1.50 # $/kmol
+C_R = 2.50 # $/m^3/min
+
+def profit(V, sign=1): # the default value of sign is 1
+    Vspan = np.linspace(0, V)
+    sol = odeint(dFdV, [FX0, FY0], Vspan)
+    Fx, Fy = sol[-1] # at exit
+
+    product_value = Fy * V_Y
+    operating_cost = V * C_R
+
+    profit = product_value - operating_cost
+    return profit * sign
+
+# This is the figure which results from the ODE above:
+#  [[./images/profit.png]]
+
+
+from scipy.optimize import fmin
+
+# CRITICAL STEP! args=(-1,) inverts the function!
+V_opt, = fmin(profit, 1.5, args=(-1,))
+
+print('The maximum profit is ${0:1.2f} at V={1:1.2f} m^3'.format(profit(V_opt), V_opt))
+#+END_SRC
+
+- This is another example of a function which doesn't have an explicit minimum.
+
+- John has done something cleaver here. Doesn't this function slightly resemble an upside down parabola?
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+k = 30.0
+CX0 = 2.5 # kmol / m^3
+v0 = 12.0 # m^3 / min
+FX0 = CX0 * v0
+FY0 = 0.0
+
+def dFdV(F, V):
+    Fx, Fy = F
+    Cx = Fx / v0
+    r = k * Cx
+    rx = -r
+    ry =  r
+    dFxdV = rx
+    dFydV = ry
+    return [dFxdV, dFydV]
+
+Vspan = np.linspace(0, 3)
+
+sol = odeint(dFdV, [FX0, FY0], Vspan)
+
+Fy = sol[:, 1]
+
+V_Y = 1.50 # $/kmol
+C_R = 2.50 # $/m^3/min
+
+product_value = Fy * V_Y
+operating_cost = Vspan * C_R
+
+profit = -1 * (product_value - operating_cost)
+plt.plot(Vspan, profit)
+plt.xlabel('Reactor volume (m$^3$)')
+plt.ylabel('Profit ($)')
+plt.savefig('images/invprofit.png')
+
+#  [[./images/invprofit.png]]
+#+END_SRC
+
+#+RESULTS:
+
+- Now our function has a minimum which fmin can find.
+
+Thought exercise:
+- What are some other ways you could find the minimum of this function?
+
+
+* Mehak
+
+The height and weight of a group of people is given below. Fit a line to this data, and determine 95% confidence intervals on the slope and intercept. Show the fit with the data. Discuss the reasonability of the fitted parameters and confidence intervals.
+height = [ 70, 63, 72, 60, 66, 70, 74, 65, 62, 67, 65, 68 ] # in inches
+weight = [155, 150, 180, 135, 156, 168, 178, 160, 132, 145, 139, 152] # in pounds
+
+* Code
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from pycse import regress
+from scipy import stats
+
+height = np.array([70,63,72,60,66,70,74,65,62,67,65,68], dtype = np.float) #inches
+weight = np.array([155,150,180,135,156,168,178,160,132,145,139,152],dtype = np.float) #pounds
+
+H = np.column_stack([height,height**0]) 
+
+
+# Determining the confdence intervals
+alpha = 1-0.95 #the confidence level is 95%
+
+p, pint, se = regress(H,weight,alpha)
+
+slope_interval, intercept_interval = pint
+
+
+print 'The slope is between {0} at the 95% confdence level'. format(slope_interval)
+
+print  'The intercept is between {0} at the 95% confdence level'. format(intercept_interval)
+
+
+#Plotting the data and fit
+fit = np.poly1d(np.polyfit(height,weight,1)) #creates a linear fit through the desorption barriers data
+slope, intercept = np.polyfit(height, weight, 1)
+
+print 'The slope is:' , slope
+print 'The intercept is:', intercept
+
+plt.plot(height, weight, 'k*', label = 'Raw data')
+plt.plot(height, fit(height), 'r-', label = 'fitted line')
+plt.xlabel('Height (inches)')
+plt.ylabel('Weight (pounds)')
+plt.legend(loc = 'best')
+#plt.show()
+
+#Alternate method of plotting
+plt.plot(height, weight, 'ko', height, np.dot(H,p),)
+plt.xlabel('Height (in)')
+plt.ylabel('Weight (lb)')
+#plt.show()
+#+END_SRC
+
+#+RESULTS:
+: The slope is between [ 1.87045726  4.56084709] at the 95% confdence level
+: The intercept is between [-150.81054504   29.31837113] at the 95% confdence level
+: The slope is: 3.21565217391
+: The intercept is: -60.7460869565
+
+* Comments
+The idea is that taller people weigh more, and that weight is proportional to height. The intercept should be zero; no height = no weight. The confidence interval includes zero, but the average value is negative! Someone who is 0 inches tall does not "weigh" -60 lbs!.

@@ -1,0 +1,278 @@
+#+STARTUP: showall
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+
+* Explore techela a bit
+Look at the techela menu
+  elisp:tq-index generates an indes buffer with clickable links
+
+  elisp:tq-search search the course notes for a word
+
+  elisp:tq-send-error-report send me an email about an error with techela
+
+  elisp:tq-email send me an email about anything else
+
+Each of those commands can be run from those links, from the menu, or by typing M-x command name.
+
+Install some additional Python packages:
+#+BEGIN_SRC python
+from setuptools.command import easy_install
+
+for pkg in ['pycse', 'quantities', 'pint',
+            'uncertainties', 'jedi', 'rope']:
+    easy_install.main(['-U', pkg])
+#+END_SRC
+
+In class exercise:  exercise:ex-intro
+
+* The Basics - isothermal reactor design with single reactions
+** Chemical reactions
+   :PROPERTIES:
+   :ID:       6e21f0d9-d99c-485b-8328-7477d0bed078
+   :END:
+- Chemical reaction transform reactants to products.
+
+Consider a reaction
+\( a A + b B + \cdots \rightarrow q Q + s S +\cdots \)
+
+- symbols on the left are reactants
+
+- symbols on the right are products
+
+- The lower case letters are stoichiometric coefficients
+  - Stoichiometric coefficients relate the amounts of each reactant that react to the amounts of products produced
+
+- The upper case letters are symbols for reactant and product species
+
+- For specificity let us consider 
+
+\( a A + b B \rightarrow c C + d D \)
+
+- We will express this reaction as:
+
+\( 0 = \alpha_3 A_3 + \alpha_4 A_4  - \alpha_1 A_1 - \alpha_2 A_2 \)
+
+where we have substituted $A = A_1$ and $a = \alpha_1$, $C = A_3$ and $c = \alpha_3$, etc... 
+
+- In the most compact form we might write this as a sum over all $N$ species for a reaction:
+
+\(\sum_{i=0}^{N-1} \alpha_i A_i = 0 \) 
+
+where $\alpha_i$ is the stoichiometric coefficient (negative for reactants, positive for products), or more preferrably in matrix equation form:
+
+\(\vec{\alpha} \cdot \vec{A} = 0\)
+
+where $\vec{\alpha}$ is the vector of stoichiometric coefficients, and $\vec{A}$ is the vector of chemical species.
+
+- It is conventional that the stoichiometric coefficients of reactants are negative and for products the stoichiometric coefficients are positive.
+
+- Atoms cannot be destroyed in non-nuclear chemical reactions, hence it follows that the same number of atoms entering a reactor must also leave the reactor. The atoms may leave the reactor in a different molecular configuration due to the reaction, but the total mass leaving the reactor must be the same. 
+
+
+- We consider the water gas shift reaction: 
+
+$CO + H_2O \rightleftharpoons H_2 + CO_2$. 
+
+- The total mass at any time will be $M_{CO} + M_{H_2O} + M_{H_2} + M_{CO_2}$. 
+  + These are related to the number of moles of each species through the species molecular weights. 
+
+- Let $\vec{N}$ be a vector that is the number of moles of each species. Then, the total mass is: $\vec{N} \cdot \vec{MW}$. 
+
+- Stoichiometry constrains the relationship between the moles of each species during reaction. 
+
+- Suppose we start with this initial number of moles of each species: $[N_0, N_0, 0, 0]$. 
+  + Now, if $n$ moles of A_1 reacts, we know that $n$ moles of A_2 react, and $n$ moles of A_3 and A_4 are produced. 
+  + In otherwords, the new number of moles of each species is: $\vec{N_0} + n\vec{\alpha}$. And the new mass is correspondingly: $(\vec{N_0} + n\vec{\alpha}) \cdot \vec{MW}$ or: $M_0 + n\vec{\alpha}\cdot\vec{MW}$.
+
+- In a properly balanced chemical reaction, there are the same number of each type of atom on each side of the reaction, so the sum of molecular weights of reactants must be the same as products, and $\vec{\alpha}\vec{MW}=0$. Therefore, the total mass does not change for any \(n\)!
+
+- We can illustrate the conservation of mass with the following equation: $\vec{\alpha}\vec{MW}=0$. Where $\vec{\alpha}$ is the stoichiometric coefficient vector and $\vec{MW}$ is a column vector of molecular weights. 
+
+- For simplicity, we use pure isotope molecular weights, and not the isotope-weighted molecular weights. This equation simply examines the mass on the right side of the equation and the mass on left side of the equation. 
+
+pydoc:np.array
+pydoc:np.dot
+
+#+BEGIN_SRC python
+import numpy as np
+
+# stoichiometric vector for
+# CO + H2O -> H2 + CO2
+alpha = np.array([-1, -1, 1, 1])  
+                                  
+MW = np.array([28, 18, 2, 44])     # Molecular weights gm/mol
+
+print(np.dot(alpha, MW))
+
+# Here is some old-fashioned code to do the same thing. do not do
+# this. even though it works:
+total = 0
+for i in range(4):
+    total = total + alpha[i] * MW[i]
+print(total)
+
+# Kudos if you thought of this:
+import operator
+print(sum(map(operator.mul, alpha, MW)))
+# just kidding, I would never do that! This is called functional programming
+#+END_SRC
+
+#+RESULTS:
+: 0
+: 0
+: 0
+
+Stoichiometry also determines if the total number of moles in a reaction change. Even though the total mass is constant, the total number of moles may change. Here are three examples showing how this is possible.
+
+1. CO + H_{2}O \rightarrow H_2 + CO_2  (no total mole change)
+2. H_{2}O \rightarrow H_2 + 1/2 O_2 (Total moles increase by 0.5 mol per mol water reacted)
+3. N_2 + 3H_2 \rightarrow 2 NH_3 (Total moles decrease by two moles for every mole of N_2 reacted)
+
+The change in number of moles is given by \(\overline{\alpha} = \sum_{i=0}^N \alpha_i\) or \(\overline{\alpha} = \sqrt{\vec{\alpha}\cdot\vec{\alpha}}\).
+
+#+BEGIN_SRC python
+import numpy as np
+# Water-gas shift
+alpha = np.array([-1, -1, 1, 1]);  # stoichiometric vector for CO +
+                                   # H2O -> H2 + CO2
+print('Change in moles for the WGS = {0} moles'.format(sum(alpha)))
+
+alpha = np.array([-1, 1, 0.5]) # H2O -> H2 + 1/2 O2
+print('Change in moles for water splitting = {0} moles'.format(sum(alpha)))
+
+alpha = np.array([-1, -3, 2]) # N2 + 3H2 -> 2 NH3
+print('Change in moles for the ammonia synthesis = {0} moles'.format(sum(alpha)))
+#+END_SRC
+
+#+RESULTS:
+: Change in moles for the WGS = 0 moles
+: Change in moles for water splitting = 0.5 moles
+: Change in moles for the ammonia synthesis = -2 moles
+
+Changing the total number of moles in a reaction will have a big effect in gas phase reactions because it results in changing volumetric flow rates. We will come back to this later.
+
+
+
+
+
+
+
+
+Click on this link to open an in class exercise: exercise:ex-mass-conservation
+
+
+
+
+
+
+
+
+
+** Reaction extent
+
+- We now consider formalizing the change in moles of each species when reactions occur. Consider:
+
+2 H_2 + O_2 $\rightarrow$ 2 H_{2}O
+
+which we remember is:
+
+\(0 = 2 A_3 - 2 A_1 - A_2 \)
+
+- If we start with N_{A_1,0} moles at some time, and later have N_{A_1} moles later, then stoichiometry dictates that:
+
+\(\frac{N_{A_1} - N_{A_1,0}}{-2} = \frac{N_{A_2} - N_{A_2,0}}{-1} = \frac{N_{A_3} - N_{A_3,0}}{2} = X  \)
+
+- We call $X$ the extent of reaction, and it has units of moles. We can show generally that:
+
+\(N_J = N_{J,0} + \alpha_J X \)
+
+or for a flow system:
+
+\(F_J = F_{J,0} + \alpha_J X \)
+
+- $X$ has units of mol/time for dimensional consistency in a flow system
+
+- Note that the extent of reaction as written is extensive, and depends on how the reaction is written through the stoichiometric coefficients. It does not, however, depend on a particular species. 
+
+- If we have a constant volume reactor and a constant volumetric flow, we can use an intensive reaction extent:
+
+\(C_J = C_{J,0} + \alpha_J \xi \). 
+
+\xi is now an intensive reaction extent \(X/V\), with units of mol / vol.
+
+or \xi' is now an intensive reaction extent \(X/\nu\), with units of mol / vol / time.
+
+- Note that there are limits on the maximum value of \xi because we cannot have negative concentrations. If we set $C_J$ to zero, we derive
+
+\(\xi_{max} = -\frac{C_{J,0}}{\alpha_J}\)
+
+- If there are multiple reactants present, then you must pick the smallest positive (non-zero) \xi_{max} to avoid getting negative concentrations of one species.
+
+- Consider this reaction:
+
+H_2 + 0.5 O_2 \rightarrow H_{2}O
+
+If you start with 0.55 mole of H_2, and 0.2 mol of O_2. What is \xi_{max}?
+
+#+BEGIN_SRC python
+import numpy as np
+
+M0 = np.array([0.55, 0.2])
+alpha = np.array([-1.0, -0.5])
+
+species = ['H2', 'O2']
+
+for sp,x in zip(species, -M0 / alpha):
+    print('{0:4s}{1:1.2f}'.format(sp,x))
+
+print('The maximum extent is {0} moles.'.format(min(- M0 / alpha)))
+#+END_SRC
+
+#+RESULTS:
+: H2  0.55
+: O2  0.40
+: The maximum extent is 0.4 moles.
+
+Now for that extent, what is the reaction compostion? Let us work it out.  pydoc:zip
+
+#+NAME: extent-composition
+#+BEGIN_SRC python
+import numpy as np
+
+M0 = np.array([0.55, 0.2, 0.0])
+alpha = np.array([-1.0, -0.5, 1.0])
+
+xi = 0.4
+
+M = M0 + alpha * xi
+species = ['H2', 'O2', 'H2O']
+
+for s,m in zip(species, M):
+    print('{0:5s} {1} moles'.format(s,m))
+#+END_SRC
+
+#+RESULTS: extent-composition
+: H2    0.15 moles
+: O2    0.0 moles
+: H2O   0.4 moles
+
+
+- You can see that at that extent we have consumed all of the oxygen. We would call that the limiting reagent, because the reaction cannot proceed further since one of the reactants is gone.
+
+- Rather than work in terms of reaction extents, you may choose to define a fractional extent:
+
+\(\Xi = \xi / \xi_{max} \)
+
+which leads upon substitution to:
+
+\( C_J = C_{J,0}(1 - \Xi) \)
+
+- This new quantity $\Xi$ is sometimes referred to as conversion. Conversion has the nice property of being dimensionless, and bounded between 0 and 1. 
+
+
+exercise:reflection-1
+
+
+* Recommended exercises
+Repeat extent-composition in fractional extent and conversion.
+
+

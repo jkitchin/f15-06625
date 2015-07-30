@@ -1,0 +1,214 @@
+
+_Quiz 3 recap_
+The following liquid-phase reaction: $\ce{A \leftrightharpoons B + C}$ occurs in a plug flow reactor. If the equilibrium constant is known to be 2198, what is the equilibrium composition if you start with pure $\ce{A}$ at a concentration of 2M? Comment on whether your solution makes sense.
+
+Thought Process:
+
+- 1st, what is the requested value for the problem?
+
+"... what is the equilibrium composition...", or  \(C_{a}\), \(C_{b}\), \(C_{c}\) at equilibrium
+
+Is this a dynamic or static situation that I am calculating?
+
+
+- 2nd, which equations do I know that incorporate this value?
+
+\( C_{c-eq} C_{b-eq} / C_{a-eq} = K_{eq} \)
+
+For ODE equations we need an initial condition:
+\( y_{1} = y_{0} + h * ODE \)
+
+- 3rd, what information do I have and what do I need to use this/these equation(s)?
+
+\( C_{c} C_{b} / C_{a} = Q \)
+
+Do I need another equation? (repeat step 2)
+
+\( C_{i} = C_{i0} + \alpha * \xi \) 
+
+Do I have enough 
+
+- 4th, Before solving anything, make a visual.
+
+You want to plot something that helps you make sense of the process.
+
+#+BEGIN_SRC python :results silent
+import matplotlib.pyplot as plt
+import numpy as np
+
+def objective(x):
+    return x * x / (2.0 - x) - 2198
+
+X = np.linspace(0, 2, num=2000)
+
+plt.plot(X, objective(X))
+plt.xlabel('$\\xi$')
+plt.ylabel('$K$')
+plt.savefig('jboes.png')
+
+# [[./jboes.png]]
+
+
+#+END_SRC
+
+How do you interpret the figure above?
+What is being represented?
+How do you think I chose appropriate bounds for my figure?
+
+- 5th, Determine which function can be used to solve the problem.
+
+fsolve to determine values of non-ODE type equations
+
+
+- 6th, Take stock of your solution.
+
+This is the most important step.
+
+Imagine you're designing a new reactor for your company which will cost something on the order of half a million dollars. You'd probably want to be pretty sure you've got the right specifications before you take the design to your boss. How do you convince him you've found the right answer?
+
+_PFR 2 assignment:_
+
+If a reaction $\ce{2A \rightarrow B}$ occurs at a rate of $r = k_1 C_A^{3/2}$ ($k = 0.12$ (L/mol)$^0.5$/min in a 100 L PFR that is fed A at a concentration of 0.75 mol/L. Compute the volumetric flow required to reduce the exit concentration of A to 0.075 mol/L. Assume the reaction takes place in a liquid.
+
+- Go through the steps outlined above?
+
+1st: volumetric flow rate
+
+2nd:
+
+\( dF_{a}/dV = 2*r_{a}\)
+
+\( F_{a} = v C_{a} \)
+
+\( r_{a} = -k * C_{a}^{3/2} \)
+
+#+BEGIN_SRC python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import fsolve
+from scipy.integrate import odeint
+from pycse import odelay
+from scipy.integrate import quad
+
+Ca0 = 0.75
+k = 0.12
+
+
+
+def dCadV(C,V,v):
+    r = -k * C**(3/2.) / v
+    dCadV = 2*r
+    return dCadV
+
+Vspan = np.linspace(0,100,num=2000)
+
+v0 = np.linspace(3,6)
+
+X = []
+for i in v0:
+    X.append(odeint(dCadV,Ca0,Vspan,args=(i,))[-1])
+    print X
+
+plt.plot(v0,X)
+#plt.show()
+
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+[array([ 0.03763509])]
+[array([ 0.03763509]), array([ 0.03883104])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023]), array([ 0.09396615])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023]), array([ 0.09396615]), array([ 0.09527121])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023]), array([ 0.09396615]), array([ 0.09527121]), array([ 0.0965753])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023]), array([ 0.09396615]), array([ 0.09527121]), array([ 0.0965753]), array([ 0.09787834])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023]), array([ 0.09396615]), array([ 0.09527121]), array([ 0.0965753]), array([ 0.09787834]), array([ 0.09918024])]
+[array([ 0.03763509]), array([ 0.03883104]), array([ 0.0400346]), array([ 0.04124543]), array([ 0.04246319]), array([ 0.04368754]), array([ 0.04491816]), array([ 0.04615474]), array([ 0.04739699]), array([ 0.04864461]), array([ 0.04989732]), array([ 0.05115484]), array([ 0.0524169]), array([ 0.05368326]), array([ 0.05495365]), array([ 0.05622784]), array([ 0.05750559]), array([ 0.05878667]), array([ 0.06007086]), array([ 0.06135795]), array([ 0.06264774]), array([ 0.06394001]), array([ 0.06523457]), array([ 0.06653124]), array([ 0.06782982]), array([ 0.06913015]), array([ 0.07043204]), array([ 0.07173534]), array([ 0.07303988]), array([ 0.0743455]), array([ 0.07565204]), array([ 0.07695937]), array([ 0.07826734]), array([ 0.07957581]), array([ 0.08088464]), array([ 0.0821937]), array([ 0.08350287]), array([ 0.08481202]), array([ 0.08612105]), array([ 0.08742982]), array([ 0.08873823]), array([ 0.09004617]), array([ 0.09135354]), array([ 0.09266023]), array([ 0.09396615]), array([ 0.09527121]), array([ 0.0965753]), array([ 0.09787834]), array([ 0.09918024]), array([ 0.10048093])]
+#+end_example
+
+
+
+
+_Tips/trips which may help the exam_
+
+* Make an org review sheet of the information you like to reference most.
+
+Things this might contain:
+
+** A template for your code blocks:
+
+#+BEGIN_SRC python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import fsolve
+from scipy.integrate import odeint
+from pycse import odelay
+from scipy.integrate import quad
+
+
+#+END_SRC
+
+Importing modules doesn't take that long. For the exam, consider having a template pre-made which has all of these functions already called in.
+
+You can also incorporate commonly used functions of your own design in the template. Be creative!
+
+This way you will know all of your
+
+** links to the documentation for functions you use most commonly:
+
+pydoc:scipy.optimize.fsolve
+
+pydoc:scipy.integrate.odeint
+
+pydoc:scipy.integrate.odeint
+
+If you forget function syntax, you'll be able to look it up quickly
+
+** Useful examples from the notes, homeworks or, quizes.
+
+This is like having a template, but it can be useful to have examples readily available to facilitate your understanding encase you panic.
+
+Remember, you can always access the syllabus and then locate the notes from there as well.
+

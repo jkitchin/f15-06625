@@ -1,0 +1,24 @@
+#+TITLE: 06-625 Chemical and Reactive Systems
+#+AUTHOR: John Kitchin
+
+#+include: introduction.org
+#+include: reactions+extent.org
+#+include: rates+rate-laws.org
+#+include: mole-balance.org
+#+include: complex-mole-balances.org
+#+include: transient-cstr-mss.org
+#+include: misc-reactor-mole-balance.org
+#+include: wrapping-up-introduction.org
+#+include: multiple-rxns-1.org
+#+include: multiple-rxns-2.org
+#+include: parameter-estimation.org
+#+include: parameter-estimation-2.org
+#+include: mechanism-determination.org
+#+include: engineering-applications.org
+#+include: mass-transfer-1.org
+#+include: generalized-effectiveness-factors.org
+#+include: non-isothermal-reactor-design.org
+#+include: non-isothermal-batch.org
+#+include: non-isothermal-cstr.org
+#+include: non-isothermal-pfr.org
+#+include: nonisothermal-mult-rxns.org
