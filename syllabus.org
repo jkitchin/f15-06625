@@ -196,3 +196,12 @@ When in doubt, review this website: http://www.cmu.edu/academic-integrity/, and 
   :END:
 
   [[elisp:tq-agenda][Upcoming assignments]]
+
+** TODO assignment:intro	      :assignment:
+   DEADLINE: <2015-09-02 Wed>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: intro
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
