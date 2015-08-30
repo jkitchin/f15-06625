@@ -97,10 +97,10 @@ V = 10     # L
 def func(Ca):
     ra = -k * Ca
     Fa = v0 * Ca
-    return Fa0 - Fa  + V * ra
+    return Fa0 - Fa + V * ra
 
 guess = 1.0  # mol / L
-ans, = fsolve(func, guess) # note the comma after ans. That "unpacks" the array
+ans, = fsolve(func, guess)  # note the comma after ans. That "unpacks" the array
 
 print('Ca_exit = {0} mol/L'.format(ans))
 #+END_SRC
