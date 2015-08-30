@@ -5,7 +5,7 @@
 - Your laptops have already been setup with the software you need for this course
   + Emacs + jmax
   + Python
-  + git 
+  + git
   + ssh
 
 ** Course setup
@@ -15,20 +15,22 @@ This course is run by Techela (Technology Enhanced Learning and Assessment), dev
 You will install the course like this:
 
 - Open Emacs
-- Type Alt-x techela
-- You will be prompted for a course name. Type f14-06625 and press enter.
-- You will be prompted for a userid. Enter your andrewid and press enter.
-- You will be prompted for your full name. Type that in, and press enter.
-- Emacs will then download the course for you, and send me your public ssh key so you can access the assignments. After I register your ssh key, you will have access to assignments.
+- Type Alt-x techela-register
+- You will be prompted for some information including your name, and andrew email address.
+- You will be prompted for your andrew email password, which will send me some information I need to give you access to the course.
+- Then, type M-x techela
+- you will be prompted for the course to open. Press Enter.
+- Emacs will then download the course for you. After I register your ssh key, you will have access to assignments.
 - Emacs will keep the course notes up to date, and tell you when assignments are due, etc...
 
 
 - Lecture notes are written in a format known as org-mode, which is a lightweight, text-based markup language
 - The notes are best viewed in Emacs, which knows how to render equations and figures, and allows you to run the code and capture the results.
 
+
 ** Python setup
 
-- Enthought Canopy is already installed  
+- Enthought Canopy is already installed
    - It has most of what we will need this semester
 - You should request an academic license at https://www.enthought.com/products/canopy/ as it will give you access to a lot of additional packages you may find helpful.
 
@@ -61,14 +63,14 @@ print('matplotlib version {}'.format(matplotlib.__version__))
 import quantities
 print('quantities version {}'.format(quantities.__version__))
 
-import uncertainties 
+import uncertainties
 print('uncertainties version {}'.format(uncertainties.__version__))
 #+END_SRC
 
 #+RESULTS:
-: numpy version 1.8.0
+: numpy version 1.9.2
 : scipy version 0.14.0
-: matplotlib version 1.3.1
+: matplotlib version 1.4.3
 : quantities version 0.10.1
 : uncertainties version 2.4.6
 
@@ -111,15 +113,15 @@ We answer questions such as:
 
 ** We are engineers
 
-We get paid to answer those questions 
+We get paid to answer those questions
 - /quantitatively/
-  - It will rarely be sufficient to qualitatively answer questions 
+  - It will rarely be sufficient to qualitatively answer questions
 - with uncertainty and risk analysis
 - even when the problems are very hard
 
 ** Role of computational tools
 
-- Many problems are too hard to solve by hand and must be solved numerically. 
+- Many problems are too hard to solve by hand and must be solved numerically.
   - For these we use computational methods
 
 - We will extensively use Emacs in this class
@@ -145,7 +147,7 @@ We get paid to answer those questions
 
 *** A simple plot
 
-Here we import functionality from python modules to get array math functions and to make a plot. 
+Here we import functionality from python modules to get array math functions and to make a plot.
 Put your cursor in this code block and press C-c C-c to run the block.
 
 Let us review some python documentation. Click on these links to learn more about these functions:
@@ -180,9 +182,9 @@ plt.savefig('images/K.png')
 [[./images/K.png]]
 
 Note: to get the image to show inline, you must manually put a figure link in the place you want it, and then run the code block.
- 
+
 *** Solve nonlinear equations
-elisp:org-toggle-latex-overlays 
+elisp:org-toggle-latex-overlays
 
 Suppose we know K at some temperature, and we want to compute the corresponding $\Delta G$? Say we know K = 100 at 300K.  We need to solve $100 = e^{-\Delta G/RT}$ for $\Delta G$ at T = 300 K. Numerically,  we need to find the value of $\Delta G$ that solves this equivalent equation:
 
@@ -218,7 +220,7 @@ You can see the two solutions are equivalent. Checkout pydoc:numpy.log
 
 
 *** Solving another nonlinear algebra problem
-elisp:org-toggle-latex-overlays  
+elisp:org-toggle-latex-overlays
 
 Given \(C_A = C_{A0} e^{-k t}\) with $C_{A0} =1$ mol/L, and $k=0.23$ 1/s, how long will it take before $C_A$ = 0.2 M? We want to know at what time is this equation true: \(0.2 - C_{A0} e^{-k t} = 0\). We define two functions here, one for $C_A$, and one for the objective function ($f(x)=0$). That is so we can evaluate $C_A(t_{soln})$ conveniently later.
 
@@ -255,7 +257,7 @@ You may find these resources helpful:
 - Class
   + Come to class everyday.
   + Watch me use Emacs and Python
-  + Ask questions about things you do not understand 
+  + Ask questions about things you do not understand
 
 - Learning python
   + http://learnpythonthehardway.org/book/
@@ -269,9 +271,9 @@ You may find these resources helpful:
   + Numerical python - http://docs.scipy.org/doc/numpy/reference/
   + Scientific python - http://docs.scipy.org/doc/scipy/reference/
 
-- Training from Enthought - free if you get a free academic account 
+- Training from Enthought - free if you get a free academic account
 https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/courses
- 
+
   - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/INTRO_TO_PYTHON][Python Essentials]]
   - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/NUMPY][Numpy]]
   - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/SCIPY][Scipy]]
@@ -285,4 +287,4 @@ https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaig
 2. You can only use techela from your computer
 3. Do not delete ~/techela or the emacs (jmax) shortcut on your desktop
 
-Your first assignment is due on [2014-08-27 Wed] assignment:intro. 
+Your first assignment is due on [2015-08-26 Wed] assignment:introduction.
