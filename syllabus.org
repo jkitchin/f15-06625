@@ -167,20 +167,20 @@ The tentative course schedule is here. It may change.
 ** [2015-09-14 Mon] [[./rxns-book/mole-balance.org]]
 ** [2015-09-16 Wed] [[./rxns-book/complex-mole-balances.org]]
 ** [2015-09-21 Mon] [[./rxns-book/transient-cstr-mss.org]]
-** [2015-09-23 Wed]
+** [2015-09-23 Wed] TBD
 ** [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
 ** [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
 ** [2015-09-29 Tue] [[./rxns-book/multiple-rxns-1.org]]
 ** [2015-10-05 Mon] [[./rxns-book/multiple-rxns-2.org]]
-** [2015-10-07 Wed] EXAM 1 (will cover material through 9/24)
+** [2015-10-07 Wed] EXAM 1 (will cover material through 9/30)
 ** [2015-10-12 Mon] [[./rxns-book/parameter-estimation.org]]
 ** [2015-10-14 Wed] [[./rxns-book/parameter-estimation-2.org]]
 ** [2015-10-19 Mon] [[./rxns-book/mechanism-determination.org]]
 ** [2015-10-21 Wed] [[./rxns-book/engineering-applications.org]]
-** [2015-10-26 Mon]
+** [2015-10-26 Mon] TBD
 ** [2015-10-28 Wed] [[./rxns-book/mass-transfer-1.org]]
 ** [2015-11-02 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
-** [2015-11-04 Wed] EXAM 2 (cumulative through 10/20)
+** [2015-11-04 Wed] EXAM 2 (cumulative through 10/26)
 ** [2015-11-09 Mon] *AICHE NO CLASS*
 ** [2015-11-11 Wed] *AICHE NO CLASS*
 ** [2015-11-16 Mon] [[./rxns-book/non-isothermal-reactor-design.org]]
@@ -189,8 +189,8 @@ The tentative course schedule is here. It may change.
 ** [2015-11-25 Wed] *NO CLASS THANKSGIVING*
 ** [2015-11-30 Mon] [[./rxns-book/non-isothermal-pfr.org]]
 ** [2015-12-02 Wed] [[./rxns-book/nonisothermal-mult-rxns.org]]
-** [2015-12-07 Mon]
-** [2015-12-09 Wed] EXAM 3 (Cumulative through 12/01)
+** [2015-12-07 Mon] TBD
+** [2015-12-09 Wed] EXAM 3 (Cumulative through 12/07)
 
 * Assignments
   :PROPERTIES:
