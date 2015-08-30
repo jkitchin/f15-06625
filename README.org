@@ -1,0 +1,5 @@
+#+TITLE: 06-625 Chemical and Reactive Systems
+
+This repository is for the course 06-625 Chemical and Reactive Systems at Carnegie Mellon University.
+
+See the [[./syllabus.org][Syllabus]].
