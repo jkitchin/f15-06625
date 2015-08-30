@@ -2,8 +2,8 @@
 #+AUTHOR: John Kitchin
 #+DATE: Fall 2015
 #+STARTUP: showall
-#+TODO: TODO COLLECTED GRADED
-#+TODO: TODO DONE
+#+TODO: TODO COLLECTED | GRADED
+#+TODO: TODO | DONE
 
 * Course details
   :PROPERTIES:
