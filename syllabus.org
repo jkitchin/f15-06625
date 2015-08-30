@@ -159,7 +159,7 @@ We will accommodate religious holidays when possible. If your work will be affec
   :PROPERTIES:
   :CUSTOM_ID: schedule
   :END:
-
+The tentative course schedule is here. It may change.
 ** [2015-08-31 Mon] [[./rxns-book/introduction.org]]
 ** [2015-09-02 Wed] [[./rxns-book/reactions+extent.org]]
 ** [2015-09-07 Mon] Labor day *NO CLASS*  Review this file:emacs.org
@@ -167,7 +167,7 @@ We will accommodate religious holidays when possible. If your work will be affec
 ** [2015-09-14 Mon] [[./rxns-book/mole-balance.org]]
 ** [2015-09-16 Wed] [[./rxns-book/complex-mole-balances.org]]
 ** [2015-09-21 Mon] [[./rxns-book/transient-cstr-mss.org]]
-** [2015-09-23 Wed] *NO CLASS*
+** [2015-09-23 Wed]
 ** [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
 ** [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
 ** [2015-09-29 Tue] [[./rxns-book/multiple-rxns-1.org]]
