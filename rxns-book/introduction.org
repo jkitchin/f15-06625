@@ -43,7 +43,7 @@ Put your cursor in this code block and run it (C-c C-c). This will install some 
 #+BEGIN_SRC python
 from setuptools.command import easy_install
 
-for pkg in ['pycse', 'quantities', 'pint',
+for pkg in ['quantities', 'pint', 'pycse',
             'uncertainties', 'jedi', 'rope']:
     easy_install.main(['-U', pkg])
 #+END_SRC
