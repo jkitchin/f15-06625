@@ -153,8 +153,6 @@ When in doubt, review this website: http://www.cmu.edu/academic-integrity/, and 
 We will accommodate religious holidays when possible. If your work will be affected by a religious holiday, you must inform Professor Kitchin as early as possible to work out an accommodation in advance.
 
 * Announcements
-
-
 * Class schedule
   :PROPERTIES:
   :CUSTOM_ID: schedule
