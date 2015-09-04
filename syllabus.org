@@ -198,7 +198,7 @@ The tentative course schedule is here. It may change.
 
   [[elisp:tq-agenda][Upcoming assignments]]
 
-** TODO assignment:introduction	      :assignment:
+** COLLECTED assignment:introduction  :assignment:
    DEADLINE: <2015-09-02 Wed>
    :PROPERTIES:
    :CATEGORY: homework
