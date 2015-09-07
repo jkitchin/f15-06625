@@ -198,8 +198,8 @@ The tentative course schedule is here. It may change.
 
   [[elisp:tq-agenda][Upcoming assignments]]
 
-** COLLECTED assignment:introduction  :assignment:
-   DEADLINE: <2015-09-02 Wed>
+** GRADED assignment:introduction     :assignment:
+   CLOSED: [2015-09-07 Mon 06:45] DEADLINE: <2015-09-02 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
