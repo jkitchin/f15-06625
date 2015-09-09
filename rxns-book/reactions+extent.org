@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Explore techela a bit
 Look at the techela menu
@@ -10,6 +10,8 @@ Look at the techela menu
   elisp:tq-send-error-report send me an email about an error with techela
 
   elisp:tq-email send me an email about anything else
+
+  elisp:tq-submit-by-email as a last resort to submit assignments late.
 
 Each of those commands can be run from those links, from the menu, or by typing M-x command name.
 
@@ -43,7 +45,7 @@ Consider a reaction
 
 - The upper case letters are symbols for reactant and product species
 
-- For specificity let us consider 
+- For specificity let us consider
 
 \( a A + b B \rightarrow c C + d D \)
 
@@ -51,11 +53,11 @@ Consider a reaction
 
 \( 0 = \alpha_3 A_3 + \alpha_4 A_4  - \alpha_1 A_1 - \alpha_2 A_2 \)
 
-where we have substituted $A = A_1$ and $a = \alpha_1$, $C = A_3$ and $c = \alpha_3$, etc... 
+where we have substituted $A = A_1$ and $a = \alpha_1$, $C = A_3$ and $c = \alpha_3$, etc...
 
 - In the most compact form we might write this as a sum over all $N$ species for a reaction:
 
-\(\sum_{i=0}^{N-1} \alpha_i A_i = 0 \) 
+\(\sum_{i=0}^{N-1} \alpha_i A_i = 0 \)
 
 where $\alpha_i$ is the stoichiometric coefficient (negative for reactants, positive for products), or more preferrably in matrix equation form:
 
@@ -65,29 +67,29 @@ where $\vec{\alpha}$ is the vector of stoichiometric coefficients, and $\vec{A}$
 
 - It is conventional that the stoichiometric coefficients of reactants are negative and for products the stoichiometric coefficients are positive.
 
-- Atoms cannot be destroyed in non-nuclear chemical reactions, hence it follows that the same number of atoms entering a reactor must also leave the reactor. The atoms may leave the reactor in a different molecular configuration due to the reaction, but the total mass leaving the reactor must be the same. 
+- Atoms cannot be destroyed in non-nuclear chemical reactions, hence it follows that the same number of atoms entering a reactor must also leave the reactor. The atoms may leave the reactor in a different molecular configuration due to the reaction, but the total mass leaving the reactor must be the same.
 
 
-- We consider the water gas shift reaction: 
+- We consider the water gas shift reaction:
 
-$CO + H_2O \rightleftharpoons H_2 + CO_2$. 
+$CO + H_2O \rightleftharpoons H_2 + CO_2$.
 
-- The total mass at any time will be $M_{CO} + M_{H_2O} + M_{H_2} + M_{CO_2}$. 
-  + These are related to the number of moles of each species through the species molecular weights. 
+- The total mass at any time will be $M_{CO} + M_{H_2O} + M_{H_2} + M_{CO_2}$.
+  + These are related to the number of moles of each species through the species molecular weights.
 
-- Let $\vec{N}$ be a vector that is the number of moles of each species. Then, the total mass is: $\vec{N} \cdot \vec{MW}$. 
+- Let $\vec{N}$ be a vector that is the number of moles of each species. Then, the total mass is: $\vec{N} \cdot \vec{MW}$.
 
-- Stoichiometry constrains the relationship between the moles of each species during reaction. 
+- Stoichiometry constrains the relationship between the moles of each species during reaction.
 
-- Suppose we start with this initial number of moles of each species: $[N_0, N_0, 0, 0]$. 
-  + Now, if $n$ moles of A_1 reacts, we know that $n$ moles of A_2 react, and $n$ moles of A_3 and A_4 are produced. 
+- Suppose we start with this initial number of moles of each species: $[N_0, N_0, 0, 0]$.
+  + Now, if $n$ moles of A_1 reacts, we know that $n$ moles of A_2 react, and $n$ moles of A_3 and A_4 are produced.
   + In otherwords, the new number of moles of each species is: $\vec{N_0} + n\vec{\alpha}$. And the new mass is correspondingly: $(\vec{N_0} + n\vec{\alpha}) \cdot \vec{MW}$ or: $M_0 + n\vec{\alpha}\cdot\vec{MW}$.
 
 - In a properly balanced chemical reaction, there are the same number of each type of atom on each side of the reaction, so the sum of molecular weights of reactants must be the same as products, and $\vec{\alpha}\vec{MW}=0$. Therefore, the total mass does not change for any \(n\)!
 
-- We can illustrate the conservation of mass with the following equation: $\vec{\alpha}\vec{MW}=0$. Where $\vec{\alpha}$ is the stoichiometric coefficient vector and $\vec{MW}$ is a column vector of molecular weights. 
+- We can illustrate the conservation of mass with the following equation: $\vec{\alpha}\vec{MW}=0$. Where $\vec{\alpha}$ is the stoichiometric coefficient vector and $\vec{MW}$ is a column vector of molecular weights.
 
-- For simplicity, we use pure isotope molecular weights, and not the isotope-weighted molecular weights. This equation simply examines the mass on the right side of the equation and the mass on left side of the equation. 
+- For simplicity, we use pure isotope molecular weights, and not the isotope-weighted molecular weights. This equation simply examines the mass on the right side of the equation and the mass on left side of the equation.
 
 pydoc:np.array
 pydoc:np.dot
@@ -97,8 +99,8 @@ import numpy as np
 
 # stoichiometric vector for
 # CO + H2O -> H2 + CO2
-alpha = np.array([-1, -1, 1, 1])  
-                                  
+alpha = np.array([-1, -1, 1, 1])
+
 MW = np.array([28, 18, 2, 44])     # Molecular weights gm/mol
 
 print(np.dot(alpha, MW))
@@ -191,11 +193,11 @@ or for a flow system:
 
 - $X$ has units of mol/time for dimensional consistency in a flow system
 
-- Note that the extent of reaction as written is extensive, and depends on how the reaction is written through the stoichiometric coefficients. It does not, however, depend on a particular species. 
+- Note that the extent of reaction as written is extensive, and depends on how the reaction is written through the stoichiometric coefficients. It does not, however, depend on a particular species.
 
 - If we have a constant volume reactor and a constant volumetric flow, we can use an intensive reaction extent:
 
-\(C_J = C_{J,0} + \alpha_J \xi \). 
+\(C_J = C_{J,0} + \alpha_J \xi \).
 
 \xi is now an intensive reaction extent \(X/V\), with units of mol / vol.
 
@@ -266,7 +268,7 @@ which leads upon substitution to:
 
 \( C_J = C_{J,0}(1 - \Xi) \)
 
-- This new quantity $\Xi$ is sometimes referred to as conversion. Conversion has the nice property of being dimensionless, and bounded between 0 and 1. 
+- This new quantity $\Xi$ is sometimes referred to as conversion. Conversion has the nice property of being dimensionless, and bounded between 0 and 1.
 
 
 exercise:reflection-1
@@ -274,5 +276,3 @@ exercise:reflection-1
 
 * Recommended exercises
 Repeat extent-composition in fractional extent and conversion.
-
-
