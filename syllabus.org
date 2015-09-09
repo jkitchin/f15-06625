@@ -160,8 +160,10 @@ We will accommodate religious holidays when possible. If your work will be affec
 The tentative course schedule is here. It may change.
 ** DONE [2015-08-31 Mon] Review syllabus, software
    CLOSED: [2015-09-02 Wed 06:53]
-** [2015-09-02 Wed] [[./rxns-book/introduction.org]]
-** [2015-09-07 Mon] Labor day *NO CLASS*  Review this file:emacs.org
+** DONE [2015-09-02 Wed] [[./rxns-book/introduction.org]]
+   CLOSED: [2015-09-08 Tue 21:31]
+** DONE [2015-09-07 Mon] Labor day *NO CLASS*  Review this file:emacs.org
+   CLOSED: [2015-09-08 Tue 21:31]
 ** [2015-09-09 Wed] [[./rxns-book/reactions+extent.org]]
 ** [2015-09-14 Mon] [[./rxns-book/rates+rate-laws.org]]
 ** [2015-09-16 Wed] [[./rxns-book/mole-balance.org]]
@@ -205,4 +207,13 @@ The tentative course schedule is here. It may change.
    :POINTS:   2
    :CUSTOM_ID: introduction
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** TODO assignment:ex-mass-conservation :assignment:
+   DEADLINE: <2015-09-09 Wed>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: ex-mass-conservation
+   :RUBRIC:   (("participation" . 1.0))
    :END:
