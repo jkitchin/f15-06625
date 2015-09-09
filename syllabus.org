@@ -217,3 +217,12 @@ The tentative course schedule is here. It may change.
    :CUSTOM_ID: ex-mass-conservation
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+** TODO assignment:reflection-1	      :assignment:
+   DEADLINE: <2015-09-09 Wed>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: reflection-1
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
