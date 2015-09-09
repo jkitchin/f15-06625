@@ -24,7 +24,7 @@ for pkg in ['quantities', 'pint', 'pycse',
     easy_install.main(['-U', pkg])
 #+END_SRC
 
-In class exercise:  exercise:ex-intro
+
 
 * The Basics - isothermal reactor design with single reactions
 ** Chemical reactions
@@ -154,19 +154,7 @@ Changing the total number of moles in a reaction will have a big effect in gas p
 
 
 
-
-
-
-
-
 Click on this link to open an in class exercise: exercise:ex-mass-conservation
-
-
-
-
-
-
-
 
 
 ** Reaction extent
