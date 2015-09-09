@@ -209,8 +209,8 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:ex-mass-conservation :assignment:
-   DEADLINE: <2015-09-09 Wed>
+** GRADED assignment:ex-mass-conservation :assignment:
+   CLOSED: [2015-09-09 Wed 16:49] DEADLINE: <2015-09-09 Wed>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   1
