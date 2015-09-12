@@ -218,8 +218,8 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** COLLECTED assignment:reflection-1  :assignment:
-   DEADLINE: <2015-09-09 Wed>
+** GRADED assignment:reflection-1     :assignment:
+   CLOSED: [2015-09-12 Sat 10:11] DEADLINE: <2015-09-09 Wed>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   1
