@@ -129,7 +129,7 @@ Stoichiometry also determines if the total number of moles in a reaction change.
 2. H_{2}O \rightarrow H_2 + 1/2 O_2 (Total moles increase by 0.5 mol per mol water reacted)
 3. N_2 + 3H_2 \rightarrow 2 NH_3 (Total moles decrease by two moles for every mole of N_2 reacted)
 
-The change in number of moles is given by \(\overline{\alpha} = \sum_{i=0}^N \alpha_i\) or \(\overline{\alpha} = \sqrt{\vec{\alpha}\cdot\vec{\alpha}}\).
+The change in number of moles is given by \(\overline{\alpha} = \sum_{i=0}^N \alpha_i\).
 
 #+BEGIN_SRC python
 import numpy as np
