@@ -236,3 +236,12 @@ The tentative course schedule is here. It may change.
    :CUSTOM_ID: reflection-2
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+** TODO assignment:nla-1	      :assignment:
+   DEADLINE: <2015-09-15 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   1
+   :CUSTOM_ID: nla-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
