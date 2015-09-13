@@ -164,7 +164,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-09-08 Tue 21:31]
 ** DONE [2015-09-07 Mon] Labor day *NO CLASS*  Review this file:emacs.org
    CLOSED: [2015-09-08 Tue 21:31]
-** [2015-09-09 Wed] [[./rxns-book/reactions+extent.org]]
+** DONE [2015-09-09 Wed] [[./rxns-book/reactions+extent.org]]
+   CLOSED: [2015-09-13 Sun 10:15]
 ** [2015-09-14 Mon] [[./rxns-book/rates+rate-laws.org]]
 ** [2015-09-16 Wed] [[./rxns-book/mole-balance.org]]
 ** [2015-09-21 Mon] [[./rxns-book/complex-mole-balances.org]]
