@@ -227,3 +227,12 @@ The tentative course schedule is here. It may change.
    :CUSTOM_ID: reflection-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+** TODO assignment:reflection-2	      :assignment:
+   DEADLINE: <2015-09-14 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: reflection-2
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
