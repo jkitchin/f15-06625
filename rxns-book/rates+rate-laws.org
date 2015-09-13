@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Reaction rates and rate laws
 ** The rate of a reaction
@@ -23,14 +23,14 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 \(\frac{N_{A_1} - N_{A_1,0}}{-1} = \frac{N_{A_2} - N_{A_2,0}}{-0.5} = \frac{N_{A_3} - N_{A_3,0}}{1} = X' \)
 
-- You can see that $X$ depends on the stoichiometric coefficients, so we have to know the reaction and how it was written when we discuss reaction rates. 
+- You can see that $X$ depends on the stoichiometric coefficients, so we have to know the reaction and how it was written when we discuss reaction rates.
 
 - $X$ is an extensive variable with units of moles
 
 
-Exercise: Suppose we start with 2 moles of oxygen at t=0 in a reactor. Later,  there is 1.4 moles of oxygen remaining. Calculate the extent of reaction for these two reactions. Use the extent to determine how much hydrogen is remaining. 
+Exercise: Suppose we start with 2 moles of oxygen at t=0 in a reactor. Later,  there is 1.4 moles of oxygen remaining. Calculate the extent of reaction for these two reactions. Use the extent to determine how much hydrogen is remaining.
 
-1. 2 H_2 + O_2 \rightarrow 2 H_{2}O 
+1. 2 H_2 + O_2 \rightarrow 2 H_{2}O
 
 2. H_2 + 1/2 O_2 \rightarrow H_{2}O
 
@@ -74,13 +74,31 @@ $r_j = \alpha_j r$
 
 - Remember that stoichiometric coefficients of reactants are negative, and products are positive
 
-- We call $r$ the rate of the reaction with units (typically) mol / vol / time 
+- We call $r$ the rate of the reaction with units (typically) mol / vol / time
 
 - The rate of disappearance of species $A_1$ is $r_{A_1} = \alpha_1 r$
 
 - The rate generally depends on the concentration of reactants (and sometimes products), as well as the temperature of the reactor.
 
-exercise:ex-rrl
+*** Practice
+The ethylene epoxidation reaction has the following stoichiometry:
+
+C2H4 + 1/2 O2  -> C2H4O
+
+If we have a reactor with one mole of ethylene and one mole of oxygen, which reactant is stoichiometrically limiting?
+
+    [[elisp:(message-box "Correct")][ethylene]]     [[elisp:(message-box "Incorrect. How many moles of ethylene are needed to consuce one mole of oxygen?")][oxygen]]
+
+If oxygen is consumed at 1 mol/min, what is the rate of ethylene consumption?
+
+   [[elisp:(message-box "Incorrect")][1/2 mol/min]]  [[elisp:(message-box "Not correct")][1 mol/min]]  [[elisp:(message-box "Correct")][2 mol/min]]
+
+
+What is the maximum amount of ethylene oxide that can be produced?
+
+   [[elisp:(message-box "Not correct")][1/2 mol]]  [[elisp:(message-box "Correct.")][1 mol]]  [[elisp:(message-box "Not correct")][2 mol]]
+
+
 
 ** Rate laws
 
@@ -101,7 +119,7 @@ exercise:ex-rrl
 
   + $r = k C_A^{3/2}$ for complex mechanisms
 
-- Rate laws are ultimately determined from experiments 
+- Rate laws are ultimately determined from experiments
 
 - We use these rate laws in conjunction with stoichiometry and mole balances to design reactors.
 
@@ -113,6 +131,8 @@ We solve ordinary differential equations in the form  of $f'(X) = f(X, f, f')$. 
 pydoc:scipy.integrate.odeint
 
 Let us consider $\frac{dy}{dx} = y(x)$ with $y(0) = 1$. Let us evaluate the solution from x=0 to x=2. The solution to this ODE is simply $y(x) = e^x$, and we plot that for comparison.
+
+We have to define a function in Python to define f(X, f, f').
 
 #+BEGIN_SRC python
 import numpy as np
@@ -144,7 +164,7 @@ Suppose we want to find the value of x that makes the solution equal to 6? You c
 
 pydoc:pycse.odelay            index:pycse.odelay
 
-You need pycse to be installed for this to work. You can install it with this block.
+You need pycse to be installed for this to work. You can install it with this block. It should already be installed. This will make sure you have the most recent version.
 
 #+BEGIN_SRC python
 from setuptools.command import easy_install
@@ -176,7 +196,7 @@ print(te[0], ye[0])
 #+END_SRC
 
 #+RESULTS:
-: 1.79175956351 [ 6.]
+: (1.7917595635054906, array([ 6.]))
 
 This tells us an event occurred at x \approx 1.79, and at that x, y=6. We can check that analytically in this case:
 
