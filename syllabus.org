@@ -246,6 +246,8 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:nla-1
+
 ** TODO assignment:ode-1	      :assignment:
    DEADLINE: <2015-09-17 Thu>
    :PROPERTIES:
