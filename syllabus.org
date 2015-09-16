@@ -237,8 +237,8 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** COLLECTED assignment:nla-1					 :assignment:
-   DEADLINE: <2015-09-15 Tue>
+** GRADED assignment:nla-1					 :assignment:
+   CLOSED: [2015-09-16 Wed 16:55] DEADLINE: <2015-09-15 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   1
