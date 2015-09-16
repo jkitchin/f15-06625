@@ -245,3 +245,12 @@ The tentative course schedule is here. It may change.
    :CUSTOM_ID: nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:ode-1	      :assignment:
+   DEADLINE: <2015-09-17 Thu>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: ode-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
