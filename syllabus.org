@@ -248,7 +248,7 @@ The tentative course schedule is here. It may change.
 
 solution:nla-1
 
-** TODO assignment:ode-1	      :assignment:
+** COLLECTED assignment:ode-1					 :assignment:
    DEADLINE: <2015-09-17 Thu>
    :PROPERTIES:
    :CATEGORY: homework
