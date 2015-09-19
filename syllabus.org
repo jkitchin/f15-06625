@@ -248,8 +248,8 @@ The tentative course schedule is here. It may change.
 
 solution:nla-1
 
-** COLLECTED assignment:ode-1					 :assignment:
-   DEADLINE: <2015-09-17 Thu>
+** GRADED assignment:ode-1					 :assignment:
+   CLOSED: [2015-09-19 Sat 16:12] DEADLINE: <2015-09-17 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
