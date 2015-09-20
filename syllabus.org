@@ -257,7 +257,7 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:creative-1	      :assignment:
+** COLLECTED assignment:creative-1    :assignment:
    DEADLINE: <2015-09-18 Fri>
    :PROPERTIES:
    :CATEGORY: homework
