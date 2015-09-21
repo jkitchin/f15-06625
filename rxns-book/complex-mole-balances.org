@@ -42,7 +42,7 @@ $\ce{A -> B + C}
 
 - We want to design a plug flow reactor to consume 80% of the ethane that enters the reactor. It is given that $-r_A = k C_A$ with $k=0.072$ 1/s at 1000K.
 
-- Let the initial molar flowrate be 0.425 mol / s of pure A into the reactor at a total pressure of 6 atm. The initial concentration of A is simply $C_{A0} = P_{A0} / (R T)$. From this, we calculate the initial volumetric flowrate: $\nu_0 = F_{A0} / C_{A0}$
+- Let the initial molar flowrate be 0.425 mol / s of pure A into the reactor at a total pressure of 6 atm. The initial concentration of A is $C_{A0} = P_{A0} / (R T)$. From this, we calculate the initial volumetric flowrate: $\nu_0 = F_{A0} / C_{A0}$
 
 - first we use the quantities package to do some unit conversions to get consistent SI units
 
@@ -78,7 +78,7 @@ print('\\nu_{{0}} = {0}'.format(v0.simplified))
 
 \(0.20 F_{A0} + 0.8 F_{A0} + 0.8 F_{A0}\)
 
- Thus, we can calculate the exit concentration as \( 0.2 F_{A0} / \nu_{exit}\):
+Thus, we can calculate the exit concentration as \( 0.2 F_{A0} / \nu_{exit}\):
 
 #+BEGIN_SRC python
 import quantities as u
@@ -261,7 +261,7 @@ plt.show()
 - We will see in the next section that pressure drops affect reactor design because of the change it causes in volumetric flow also.
 
 
-exercise:ex-mol-change
+assignment:ex-mol-change
 
 
 * Mole balances with pressure drops
@@ -427,3 +427,5 @@ plt.show()
 - You can see more than 50% pressure drop over the length of the bed
 
 - Set \alpha to 0 to see the effect of the pressure drop. Does conversion increase or decrease?
+
+Do this exercise, and turn it in before you leave: assignment:ode-2
