@@ -166,8 +166,10 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-09-08 Tue 21:31]
 ** DONE [2015-09-09 Wed] [[./rxns-book/reactions+extent.org]]
    CLOSED: [2015-09-13 Sun 10:15]
-** [2015-09-14 Mon] [[./rxns-book/rates+rate-laws.org]]
-** [2015-09-16 Wed] [[./rxns-book/mole-balance.org]]
+** DONE [2015-09-14 Mon] [[./rxns-book/rates+rate-laws.org]]
+   CLOSED: [2015-09-21 Mon 05:55]
+** DONE [2015-09-16 Wed] [[./rxns-book/mole-balance.org]]
+   CLOSED: [2015-09-21 Mon 05:55]
 ** [2015-09-21 Mon] [[./rxns-book/complex-mole-balances.org]]
 ** [2015-09-23 Wed] [[./rxns-book/transient-cstr-mss.org]]
 ** [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
@@ -264,4 +266,13 @@ solution:nla-1
    :POINTS:   3
    :CUSTOM_ID: creative-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** TODO assignment:ex-mol-change      :assignment:
+   DEADLINE: <2015-09-21 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: ex-mol-change
+   :RUBRIC:   (("participation" . 1.0))
    :END:
