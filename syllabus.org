@@ -276,3 +276,12 @@ solution:nla-1
    :CUSTOM_ID: ex-mol-change
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+** TODO assignment:ode-2	      :assignment:
+   DEADLINE: <2015-09-21 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: ode-2
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
