@@ -285,3 +285,12 @@ solution:nla-1
    :CUSTOM_ID: ode-2
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+** TODO assignment:mol-change-pfr     :assignment:
+   DEADLINE: <2015-09-22 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: mol-change-pfr
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
