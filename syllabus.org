@@ -277,7 +277,7 @@ solution:nla-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** COLLECTED assignment:ode-2	      :assignment:
+** COLLECTED assignment:ode-2					 :assignment:
    DEADLINE: <2015-09-21 Mon>
    :PROPERTIES:
    :CATEGORY: participation
