@@ -268,7 +268,7 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:ex-mol-change      :assignment:
+** COLLECTED assignment:ex-mol-change :assignment:
    DEADLINE: <2015-09-21 Mon>
    :PROPERTIES:
    :CATEGORY: participation
@@ -277,7 +277,7 @@ solution:nla-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** TODO assignment:ode-2	      :assignment:
+** COLLECTED assignment:ode-2	      :assignment:
    DEADLINE: <2015-09-21 Mon>
    :PROPERTIES:
    :CATEGORY: participation
