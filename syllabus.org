@@ -268,8 +268,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:ex-mol-change				 :assignment:
-   DEADLINE: <2015-09-21 Mon>
+** GRADED assignment:ex-mol-change				 :assignment:
+   CLOSED: [2015-09-22 Tue 15:42] DEADLINE: <2015-09-21 Mon>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   2
