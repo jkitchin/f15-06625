@@ -314,8 +314,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:quiz-1	      :assignment:
-   DEADLINE: <2015-09-23 Wed>
+** GRADED assignment:quiz-1	      :assignment:
+   CLOSED: [2015-09-23 Wed 14:45] DEADLINE: <2015-09-23 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
    :POINTS:   2
