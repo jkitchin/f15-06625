@@ -259,8 +259,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:creative-1    :assignment:
-   DEADLINE: <2015-09-18 Fri>
+** GRADED assignment:creative-1	      :assignment:
+   CLOSED: [2015-09-22 Tue 21:14] DEADLINE: <2015-09-18 Fri>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
