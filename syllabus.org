@@ -304,3 +304,12 @@ solution:nla-1
    :CUSTOM_ID: const-p-batch
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:pdrop-consultant   :assignment:
+   DEADLINE: <2015-09-25 Fri>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: pdrop-consultant
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
