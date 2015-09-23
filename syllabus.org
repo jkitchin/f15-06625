@@ -287,7 +287,7 @@ solution:nla-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** TODO assignment:mol-change-pfr     :assignment:
+** COLLECTED assignment:mol-change-pfr :assignment:
    DEADLINE: <2015-09-22 Tue>
    :PROPERTIES:
    :CATEGORY: homework
