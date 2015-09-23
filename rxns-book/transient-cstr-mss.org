@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Transient CSTR
 
@@ -7,7 +7,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 \( \frac{dN_A}{dt} = F_{A0} - F_A + V r_A \)
 
-- and an initial condition on the concentration of $A$ in the reactor. 
+- and an initial condition on the concentration of $A$ in the reactor.
 
 - Suppose that the reactor starts out full of solvent, with no $A$ present \(C_A(t=0) = 0   \).  The reactor is at constant volume, so we rewrite the mole balance as:
 
@@ -31,7 +31,7 @@ k = 0.11   # rate constant (1/min)
 def dCadt(Ca, t):
     rA = -k * Ca
     Fa = v0 * Ca
-    return FA0 / V  - Fa / V  +  rA  
+    return FA0 / V  - Fa / V  +  rA
 
 tspan = np.linspace(0.0, 20.0)
 Ca0 = 0.0 # initial condition in the tank
@@ -79,16 +79,20 @@ print('Reaction time scale = {}'.format(1 / k)) # this is for a 1st order reacti
 - Note that unlike solving for the steady state solution using =fsolve=, here we do not need an initial guess.
   + Instead, we start with an initial condition that is known
 
-- There are scenarios where there are multiple steady state solutions. 
+- There are scenarios where there are multiple steady state solutions.
   + In those cases the solution you get depends on the initial conditions
   + This is analogous to the solution depending on the initial guess in a non-linear algebra problem
 
-* Multiple steady states in a CSTR 
+- Also note, you cannot use conversion to solve this problem.
+
+- The concentration is changing at early times because of the flow into the reactor.
+
+* Multiple steady states in a CSTR
  [[index:multiple steady states]]
 
-- Let us examine one case where there are multiple steady state solutions. 
+- Let us examine one case where there are multiple steady state solutions.
 
-- When rate laws are sufficiently non-linear, it becomes possible to have multiple steady state solutions. 
+- When rate laws are sufficiently non-linear, it becomes possible to have multiple steady state solutions.
 
 - If we have a reaction of $A$ to products, following the rate law $-r_A = \frac{1.75 C_A}{(1 + 10 C_A)^2}$ (with overall units of mol / L /min), then under some conditions it may be possible to observe multiple steady states.
   - This kind of rate law occurs when adsorption and surface intermediates determine the rate, or in enzyme kinetics
@@ -136,7 +140,7 @@ plt.savefig('images/multiple-steady-states.png')
 
 [[./images/multiple-steady-states.png]]
 
-- You can see that there are three places where the objective function is equal to zero. 
+- You can see that there are three places where the objective function is equal to zero.
   - At approximately $C_A = 0.05, 0.19, 1.0$
   - These correspond to a high conversion, medium conversion, and low conversion steady state solution.
 
@@ -176,5 +180,4 @@ print('steady state 3 = {}'.format(fsolve(objective, 1.0)))
 
 - A better question is which ones are stable?
 
-- You will not always observe multiple steady states, even for this reaction. If the reaction rate constant is different, or the volumetric flow is different, or inlet concentrations are different, then you may only observe one steady state. 
-
+- You will not always observe multiple steady states, even for this reaction. If the reaction rate constant is different, or the volumetric flow is different, or inlet concentrations are different, then you may only observe one steady state.

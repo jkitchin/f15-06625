@@ -170,7 +170,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-09-21 Mon 05:55]
 ** DONE [2015-09-16 Wed] [[./rxns-book/mole-balance.org]]
    CLOSED: [2015-09-21 Mon 05:55]
-** [2015-09-21 Mon] [[./rxns-book/complex-mole-balances.org]]
+** DONE [2015-09-21 Mon] [[./rxns-book/complex-mole-balances.org]]
+   CLOSED: [2015-09-23 Wed 06:26]
 ** [2015-09-23 Wed] [[./rxns-book/transient-cstr-mss.org]]
 ** [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
 ** [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
@@ -259,8 +260,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:creative-1    :assignment:
-   DEADLINE: <2015-09-18 Fri>
+** GRADED assignment:creative-1	      :assignment:
+   CLOSED: [2015-09-22 Tue 21:14] DEADLINE: <2015-09-18 Fri>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
@@ -293,4 +294,31 @@ solution:nla-1
    :POINTS:   2
    :CUSTOM_ID: mol-change-pfr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** TODO assignment:const-p-batch      :assignment:
+   DEADLINE: <2015-09-24 Thu>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   3
+   :CUSTOM_ID: const-p-batch
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** TODO assignment:pdrop-consultant   :assignment:
+   DEADLINE: <2015-09-25 Fri>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: pdrop-consultant
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** COLLECTED assignment:quiz-1	      :assignment:
+   DEADLINE: <2015-09-23 Wed>
+   :PROPERTIES:
+   :CATEGORY: quiz
+   :POINTS:   2
+   :CUSTOM_ID: quiz-1
+   :RUBRIC:   (("participation" . 1.0))
    :END:
