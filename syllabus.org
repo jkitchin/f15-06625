@@ -318,7 +318,7 @@ solution:nla-1
    DEADLINE: <2015-09-23 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
-   :POINTS:   0
+   :POINTS:   2
    :CUSTOM_ID: quiz-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
