@@ -322,3 +322,5 @@ solution:nla-1
    :CUSTOM_ID: quiz-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+solution:quiz-1
