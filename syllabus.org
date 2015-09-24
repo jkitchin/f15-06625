@@ -260,6 +260,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:ode-1
+
 ** GRADED assignment:creative-1	      :assignment:
    CLOSED: [2015-09-22 Tue 21:14] DEADLINE: <2015-09-18 Fri>
    :PROPERTIES:
