@@ -310,7 +310,7 @@ solution:mol-change-pfr
 
 solution:const-p-batch
 
-** TODO assignment:pdrop-consultant   :assignment:
+** COLLECTED assignment:pdrop-consultant :assignment:
    DEADLINE: <2015-09-25 Fri>
    :PROPERTIES:
    :CATEGORY: homework
