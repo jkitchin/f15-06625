@@ -308,6 +308,8 @@ solution:mol-change-pfr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:const-p-batch
+
 ** TODO assignment:pdrop-consultant   :assignment:
    DEADLINE: <2015-09-25 Fri>
    :PROPERTIES:
