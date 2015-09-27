@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Nonisothermal reactors with reversible reactions
 
@@ -249,7 +249,7 @@ Hrx = -6.900      # Reaction enthalpy kJ/mol at 330 K
 
 k1 = 31.1         # Rate constant at 360 K
 T1 = 360.0        # Reference T for the rate constant
-E = 65.7          # Activation energy
+E = 65.7          # Activation energy kJ/mol
 Kc1 = 3.03        # at 60degC
 T2 = 273.15 + 60  # Reference T for the equilibrium constant
 
@@ -271,6 +271,11 @@ Tfeed = 300.0 # feed T in K
 
 def objective(Y, Fao):
     X, T = Y  # unpack the variables
+
+    v = v0 * T / Tfeed
+
+    Cao = Fao / v
+
     Ca = Cao * (1.0 - X)
     Cb = Cao * X
 
@@ -288,7 +293,9 @@ def objective(Y, Fao):
     z1 = Fao - Fa + ra * V
 
     # energy balance
-    z2 = (Fao*CpA + Fbo*CpB + Fio*CpI)*(Tfeed - T) + (-Hrxn * r * V)
+    z2 = (Fao * CpA
+          + Fbo * CpB
+          + Fio * CpI) * (Tfeed - T) + (-Hrxn * r * V)
     return [z1, z2]
 
 from scipy.optimize import fsolve
@@ -307,8 +314,8 @@ print('After reactor 1: X2 = {0:1.2f} and T2 = {1:1.0f}'.format(X2, T2))
 #+END_SRC
 
 #+RESULTS:
-: After reactor 1: X1 = 0.50 and T1 = 322
-: After reactor 1: X2 = 0.76 and T2 = 320
+: After reactor 1: X1 = 0.49 and T1 = 323
+: After reactor 1: X2 = 0.74 and T2 = 330
 
 - By using interstage cooling we are able to increase the total conversion
 - An alternative to this is integrating a heat exchanger to keep the reactor isothermal
