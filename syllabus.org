@@ -329,3 +329,12 @@ solution:const-p-batch
    :END:
 
 solution:quiz-1
+
+** TODO assignment:cstr-mult-ss	      :assignment:
+   DEADLINE: <2015-09-29 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: cstr-mult-ss
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
