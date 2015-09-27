@@ -310,8 +310,8 @@ solution:mol-change-pfr
 
 solution:const-p-batch
 
-** COLLECTED assignment:pdrop-consultant :assignment:
-   DEADLINE: <2015-09-25 Fri>
+** GRADED assignment:pdrop-consultant :assignment:
+   CLOSED: [2015-09-27 Sun 18:20] DEADLINE: <2015-09-25 Fri>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
@@ -323,7 +323,7 @@ solution:const-p-batch
    CLOSED: [2015-09-23 Wed 14:45] DEADLINE: <2015-09-23 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
-   :POINTS:   2
+   :POINTS:   0.01
    :CUSTOM_ID: quiz-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
