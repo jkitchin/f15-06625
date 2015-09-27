@@ -299,7 +299,7 @@ solution:ode-1
    :END:
 solution:mol-change-pfr
 
-** TODO assignment:const-p-batch      :assignment:
+** COLLECTED assignment:const-p-batch :assignment:
    DEADLINE: <2015-09-24 Thu>
    :PROPERTIES:
    :CATEGORY: homework
