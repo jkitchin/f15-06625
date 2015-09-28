@@ -50,13 +50,13 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 import numpy as np
 from scipy.integrate import odeint
 
-k = 0.02     # L^2/mol^2/hr
+k = 0.02      # L^2/mol^2/hr
 
-Ca0 = 2.0    # mol / L
-Cbfeed = 2.0 # mol /L
+Ca0 = 2.0     # mol / L
+Cbfeed = 2.0  # mol /L
 
-v0 = 0.1     # L / min
-V0 = 5.0     # L
+v0 = 0.1      # L / min
+V0 = 5.0      # L
 
 # We have three ODEs
 def ode(Y, t):
@@ -139,14 +139,14 @@ print('V_final = {0}'.format(V_fin))
 import numpy as np
 from scipy.integrate import odeint
 
-k = 0.7    # rate constant  1/min
-kb = 0.2   # mass transfer coefficent * a  1/min
+k = 0.7     # rate constant  1/min
+kb = 0.2    # mass transfer coefficent * a  1/min
 
-Ca0 = 0.2  # mol / L
-Fa0 = 10.0 # mol / min
-Ft0 = Fa0  # Fb0, Fc0 = 0
+Ca0 = 0.2   # mol / L
+Fa0 = 10.0  # mol / min
+Ft0 = Fa0   # Fb0, Fc0 = 0
 
-v0 = Fa0 / Ca0 # inlet volumetric flow
+v0 = Fa0 / Ca0  # inlet volumetric flow
 
 Cbs = 0.0    # concentration of B outside shell
 
@@ -171,7 +171,7 @@ def dFdV(F, V):
 Vspan = np.linspace(0.0, 400.0) # liters
 F0 = [Fa0, 0, 0]
 sol = odeint(dFdV, F0, Vspan)
-Faexit, Fbexit, Fcexit = sol[-1,:]
+Faexit, Fbexit, Fcexit = sol[-1, :]
 print('''Fa_exit = {0} mol/min
 Fb_exit = {1} mol/min
 Fc_exit = {2} mol/min'''.format(Faexit, Fbexit, Fcexit))

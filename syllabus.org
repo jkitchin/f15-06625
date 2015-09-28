@@ -172,29 +172,29 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-09-21 Mon 05:55]
 ** DONE [2015-09-21 Mon] [[./rxns-book/complex-mole-balances.org]]
    CLOSED: [2015-09-23 Wed 06:26]
-** [2015-09-23 Wed] [[./rxns-book/transient-cstr-mss.org]]
+** DONE [2015-09-23 Wed] [[./rxns-book/transient-cstr-mss.org]]
+   CLOSED: [2015-09-23 Wed 21:03]
 ** [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
 ** [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
-** [2015-09-29 Tue] [[./rxns-book/multiple-rxns-1.org]]
-** [2015-10-05 Mon] [[./rxns-book/multiple-rxns-2.org]]
+** [2015-10-05 Mon] [[./rxns-book/multiple-rxns-1.org]]
 ** [2015-10-07 Wed] EXAM 1 (will cover material through 9/30)
-** [2015-10-12 Mon] [[./rxns-book/parameter-estimation.org]]
-** [2015-10-14 Wed] [[./rxns-book/parameter-estimation-2.org]]
-** [2015-10-19 Mon] [[./rxns-book/mechanism-determination.org]]
-** [2015-10-21 Wed] [[./rxns-book/engineering-applications.org]]
+** [2015-10-12 Mon] [[./rxns-book/multiple-rxns-2.org]]
+** [2015-10-14 Wed] [[./rxns-book/parameter-estimation.org]]
+** [2015-10-19 Mon] [[./rxns-book/parameter-estimation-2.org]]
+** [2015-10-21 Wed] [[./rxns-book/mechanism-determination.org]]
 ** [2015-10-26 Mon] TBD
-** [2015-10-28 Wed] [[./rxns-book/mass-transfer-1.org]]
-** [2015-11-02 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
+** [2015-10-28 Wed] [[./rxns-book/engineering-applications.org]]
+** [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
 ** [2015-11-04 Wed] EXAM 2 (cumulative through 10/26)
 ** [2015-11-09 Mon] *AICHE NO CLASS*
 ** [2015-11-11 Wed] *AICHE NO CLASS*
-** [2015-11-16 Mon] [[./rxns-book/non-isothermal-reactor-design.org]]
-** [2015-11-18 Wed] [[./rxns-book/non-isothermal-batch.org]]
-** [2015-11-23 Mon] [[./rxns-book/non-isothermal-cstr.org]]
+** [2015-11-16 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
+** [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+** [2015-11-23 Mon] [[./rxns-book/non-isothermal-batch.org]]
 ** [2015-11-25 Wed] *NO CLASS THANKSGIVING*
-** [2015-11-30 Mon] [[./rxns-book/non-isothermal-pfr.org]]
-** [2015-12-02 Wed] [[./rxns-book/nonisothermal-mult-rxns.org]]
-** [2015-12-07 Mon] TBD
+** [2015-11-30 Mon] [[./rxns-book/non-isothermal-cstr.org]]
+** [2015-12-02 Wed] [[./rxns-book/non-isothermal-pfr.org]]
+** [2015-12-07 Mon] [[./rxns-book/nonisothermal-mult-rxns.org]]
 ** [2015-12-09 Wed] EXAM 3 (Cumulative through 12/07)
 
 * Assignments
@@ -260,6 +260,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:ode-1
+
 ** GRADED assignment:creative-1	      :assignment:
    CLOSED: [2015-09-22 Tue 21:14] DEADLINE: <2015-09-18 Fri>
    :PROPERTIES:
@@ -287,14 +289,16 @@ solution:nla-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** TODO assignment:mol-change-pfr     :assignment:
-   DEADLINE: <2015-09-22 Tue>
+** GRADED assignment:mol-change-pfr				 :assignment:
+   CLOSED: [2015-09-24 Thu 15:54] DEADLINE: <2015-09-22 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
    :CUSTOM_ID: mol-change-pfr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+solution:mol-change-pfr
+
 
 ** GRADED assignment:const-p-batch				 :assignment:
    CLOSED: [2015-09-28 Mon 14:12] DEADLINE: <2015-09-24 Thu>
@@ -305,8 +309,10 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:pdrop-consultant   :assignment:
-   DEADLINE: <2015-09-25 Fri>
+solution:const-p-batch
+
+** GRADED assignment:pdrop-consultant :assignment:
+   CLOSED: [2015-09-27 Sun 18:20] DEADLINE: <2015-09-25 Fri>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
@@ -314,11 +320,24 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:quiz-1	      :assignment:
-   DEADLINE: <2015-09-23 Wed>
+solution:pdrop-consultant
+
+** GRADED assignment:quiz-1	      :assignment:
+   CLOSED: [2015-09-23 Wed 14:45] DEADLINE: <2015-09-23 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
-   :POINTS:   2
+   :POINTS:   0.01
    :CUSTOM_ID: quiz-1
    :RUBRIC:   (("participation" . 1.0))
+   :END:
+
+solution:quiz-1
+
+** TODO assignment:cstr-mult-ss	      :assignment:
+   DEADLINE: <2015-09-29 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: cstr-mult-ss
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
