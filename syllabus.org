@@ -296,8 +296,8 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:const-p-batch				 :assignment:
-   DEADLINE: <2015-09-24 Thu>
+** GRADED assignment:const-p-batch				 :assignment:
+   CLOSED: [2015-09-28 Mon 14:12] DEADLINE: <2015-09-24 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
