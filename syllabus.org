@@ -296,7 +296,7 @@ solution:nla-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:const-p-batch      :assignment:
+** COLLECTED assignment:const-p-batch				 :assignment:
    DEADLINE: <2015-09-24 Thu>
    :PROPERTIES:
    :CATEGORY: homework
