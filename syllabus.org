@@ -341,3 +341,12 @@ solution:quiz-1
    :CUSTOM_ID: cstr-mult-ss
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:membrane-pressure  :assignment:
+   DEADLINE: <2015-10-01 Thu 23:59>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: membrane-pressure
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
