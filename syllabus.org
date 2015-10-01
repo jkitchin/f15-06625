@@ -174,8 +174,10 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-09-23 Wed 06:26]
 ** DONE [2015-09-23 Wed] [[./rxns-book/transient-cstr-mss.org]]
    CLOSED: [2015-09-23 Wed 21:03]
-** [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
-** [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
+** DONE [2015-09-28 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
+   CLOSED: [2015-09-30 Wed 20:35]
+** DONE [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
+   CLOSED: [2015-09-30 Wed 20:35]
 ** [2015-10-05 Mon] [[./rxns-book/multiple-rxns-1.org]]
 ** [2015-10-07 Wed] EXAM 1 (will cover material through 9/30)
 ** [2015-10-12 Mon] [[./rxns-book/multiple-rxns-2.org]]
