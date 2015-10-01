@@ -345,6 +345,8 @@ solution:quiz-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:cstr-mult-ss
+
 ** TODO assignment:membrane-pressure  :assignment:
    DEADLINE: <2015-10-01 Thu 23:59>
    :PROPERTIES:
