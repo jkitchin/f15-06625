@@ -356,7 +356,7 @@ solution:cstr-mult-ss
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:cstr-pfr-1	      :assignment:
+** COLLECTED assignment:cstr-pfr-1    :assignment:
    DEADLINE: <2015-10-02 Fri 23:59>
    :PROPERTIES:
    :CATEGORY: homework
