@@ -355,6 +355,7 @@ solution:cstr-mult-ss
    :CUSTOM_ID: membrane-pressure
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+solution:membrane-pressure
 
 ** COLLECTED assignment:cstr-pfr-1    :assignment:
    DEADLINE: <2015-10-02 Fri 23:59>
@@ -364,3 +365,4 @@ solution:cstr-mult-ss
    :CUSTOM_ID: cstr-pfr-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+solution:cstr-pfr-1
