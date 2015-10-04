@@ -347,7 +347,7 @@ solution:quiz-1
 
 solution:cstr-mult-ss
 
-** TODO assignment:membrane-pressure  :assignment:
+** COLLECTED assignment:membrane-pressure :assignment:
    DEADLINE: <2015-10-01 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
