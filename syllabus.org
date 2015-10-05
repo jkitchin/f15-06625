@@ -178,7 +178,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-09-30 Wed 20:35]
 ** DONE [2015-09-30 Wed] [[./rxns-book/wrapping-up-introduction.org]]
    CLOSED: [2015-09-30 Wed 20:35]
-** [2015-10-05 Mon] [[./rxns-book/multiple-rxns-1.org]]
+** DONE [2015-10-05 Mon] [[./rxns-book/multiple-rxns-1.org]]
+   CLOSED: [2015-10-05 Mon 11:04]
 ** [2015-10-07 Wed] EXAM 1 (will cover material through 9/30)
 ** [2015-10-12 Mon] [[./rxns-book/multiple-rxns-2.org]]
 ** [2015-10-14 Wed] [[./rxns-book/parameter-estimation.org]]
@@ -375,3 +376,5 @@ solution:cstr-pfr-1
    :CUSTOM_ID: quiz-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:quiz-2
