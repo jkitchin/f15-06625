@@ -239,8 +239,8 @@ R = 0.082057    # L atm / (mol K)
 Ca0 = Pa0 / (R * T)
 
 def func(xi):
-    nu = np.array([-1, -1, 1, 1]) # stoichiometric coefficients
-    C0 = np.array([Ca0, Ca0, 0.0, 0.0]) # initial concentrations
+    nu = np.array([-1, -1, 1, 1])  # stoichiometric coefficients
+    C0 = np.array([Ca0, Ca0, 0.0, 0.0])  # initial concentrations
     # we use arrays so we can have element-wise multiplication
     C = C0 + nu * xi
     return K - np.prod(C**nu)
