@@ -366,3 +366,12 @@ solution:membrane-pressure
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 solution:cstr-pfr-1
+
+** TODO assignment:quiz-2	      :assignment:
+   DEADLINE: <2015-10-05 Mon 10:20>
+   :PROPERTIES:
+   :CATEGORY: quiz
+   :POINTS:   2
+   :CUSTOM_ID: quiz-2
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
