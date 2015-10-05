@@ -348,8 +348,8 @@ solution:quiz-1
 
 solution:cstr-mult-ss
 
-** COLLECTED assignment:membrane-pressure			 :assignment:
-   DEADLINE: <2015-10-01 Thu 23:59>
+** GRADED assignment:membrane-pressure				 :assignment:
+   CLOSED: [2015-10-05 Mon 13:31] DEADLINE: <2015-10-01 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
