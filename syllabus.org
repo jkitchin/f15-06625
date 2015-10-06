@@ -368,8 +368,8 @@ solution:membrane-pressure
    :END:
 solution:cstr-pfr-1
 
-** COLLECTED assignment:quiz-2	      :assignment:
-   DEADLINE: <2015-10-05 Mon 10:20>
+** GRADED assignment:quiz-2	      :assignment:
+   CLOSED: [2015-10-05 Mon 20:53] DEADLINE: <2015-10-05 Mon 10:20>
    :PROPERTIES:
    :CATEGORY: quiz
    :POINTS:   2
