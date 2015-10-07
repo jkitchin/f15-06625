@@ -423,3 +423,12 @@ solution:quiz-2
    :CUSTOM_ID: exam-1-5
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:survey	      :assignment:
+   DEADLINE: <2015-10-08 Thu>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: survey
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
