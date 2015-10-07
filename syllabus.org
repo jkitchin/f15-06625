@@ -415,7 +415,7 @@ solution:quiz-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:exam-1-5	      :assignment:
+** COLLECTED assignment:exam-1-5      :assignment:
    DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
