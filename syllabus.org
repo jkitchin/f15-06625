@@ -337,8 +337,8 @@ solution:pdrop-consultant
 solution:quiz-1
 
 
-** COLLECTED assignment:cstr-mult-ss				 :assignment:
-   DEADLINE: <2015-09-29 Tue>
+** GRADED assignment:cstr-mult-ss				 :assignment:
+   CLOSED: [2015-10-07 Wed 14:47] DEADLINE: <2015-09-29 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
