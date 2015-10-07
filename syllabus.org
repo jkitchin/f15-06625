@@ -379,7 +379,7 @@ solution:cstr-pfr-1
 
 solution:quiz-2
 
-** TODO assignment:exam-1-mc	      :assignment:
+** COLLECTED assignment:exam-1-mc     :assignment:
    DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
