@@ -379,8 +379,8 @@ solution:cstr-pfr-1
 
 solution:quiz-2
 
-** COLLECTED assignment:exam-1-mc     :assignment:
-   DEADLINE: <2015-10-07 Wed 10:20>
+** GRADED assignment:exam-1-mc	      :assignment:
+   CLOSED: [2015-10-07 Wed 16:01] DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
    :POINTS:   5
