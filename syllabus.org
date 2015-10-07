@@ -414,3 +414,12 @@ solution:quiz-2
    :CUSTOM_ID: exam-1-4
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:exam-1-5	      :assignment:
+   DEADLINE: <2015-10-07 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam1
+   :POINTS:   5
+   :CUSTOM_ID: exam-1-5
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
