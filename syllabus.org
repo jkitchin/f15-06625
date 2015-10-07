@@ -388,7 +388,7 @@ solution:quiz-2
    :RUBRIC:   multiple-choice
    :END:
 
-** TODO assignment:exam-1-2	      :assignment:
+** COLLECTED assignment:exam-1-2      :assignment:
    DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
