@@ -27,7 +27,7 @@ Alt-x techela
 
 and follow the directions. After I register your pub key, you will have access to the course assignments.
 
-** Mac 
+** Mac
 I installed Emacs 24.3 from http://emacsformacosx.com.
 
 I installed git from http://git-scm.com/download/mac
@@ -44,26 +44,26 @@ Later, I used brew to build a more modern version 24.4 like this:
 brew install emacs --with-gnutls --with-imagemagick --with-librsvg --with-x --use-git-head --HEAD --cocoa
 #+END_SRC
 
-Then run the jmax-mac.sh script in jmax to open emacs. After that, run 
+Then run the jmax-mac.sh script in jmax to open emacs. After that, run
 
 Alt-x techela
 
 and follow the directions. After I register your pub key, you will have access to the course assignments.
 
 ** Linux
-Use your package manager to install a modern git, ssh and emacs. Install Enthought for Linux, and clone jmax.  You should be able to run jmax.sh in jmax to launch emacs. After it loads, run 
+Use your package manager to install a modern git, ssh and emacs. Install Enthought for Linux, and clone jmax.  You should be able to run jmax.sh in jmax to launch emacs. After it loads, run
 
 Alt-x techela
 
 and follow the directions. After I register your pub key, you will have access to the course assignments.
 * I do not want to use Emacs, can I use something else?
-Everything we will do is built into Emacs. There is nothing else that will do what we need. If you like Vim, you should look into configuring Emacs to act like Vim (http://www.emacswiki.org/emacs/ViperMode). 
+Everything we will do is built into Emacs. There is nothing else that will do what we need. If you like Vim, you should look into configuring Emacs to act like Vim (http://www.emacswiki.org/emacs/ViperMode).
 
 While it is technically possible to do everything via command-line utilities, I will not spend the time explaining how to do that. It is already coded into Emacs.
 
 * I do not like Python, can I use Matlab? or some other software package?
 
-We will not consider any other math software tools in this class besides Python, and some things we will do are not yet possible with Matlab or other tools. 
+We will not consider any other math software tools in this class besides Python, and some things we will do are not yet possible with Matlab or other tools.
 
 You may use Matlab  if you choose, under the following conditions:
 
@@ -77,7 +77,7 @@ We will provide complete support for solving problems with Python.
 
 * I see gray boxes for equations.
 
-Make sure LaTeX is installed. 
+Make sure LaTeX is installed.
 
 If you run Windows, try this in your init.el file:
 
@@ -115,3 +115,20 @@ cat ~/../../AppData/Local/Enthought/Canopy/User/Scripts/pyflakes.bat
 Emacs remembers your password for convenience. Unfortunately it remembers bad ones too. Click on this link to make it forget, and send your mail again.
 
 elisp:auth-source-forget-all-cached
+* My jmax is not updating
+This will work for  the usual windows installation
+#+BEGIN_SRC sh
+cd ~/AppData/Local/jmax
+git pull origin master
+#+END_SRC
+
+For non-standard, e.g. desktop install try this:
+
+#+BEGIN_SRC emacs-lisp
+(with-current-directory (file-name-directory (locate-library "jmax"))
+  (shell-command "git pull origin master"))
+(message "Please restart Emacs.")
+#+END_SRC
+
+#+RESULTS:
+: 0

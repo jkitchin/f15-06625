@@ -434,7 +434,7 @@ solution:exam-1-4
 
 solution:exam-1-5
 
-** TODO assignment:survey	      :assignment:
+** COLLECTED assignment:survey	      :assignment:
    DEADLINE: <2015-10-08 Thu>
    :PROPERTIES:
    :CATEGORY: participation
