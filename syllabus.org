@@ -434,8 +434,8 @@ solution:exam-1-4
 
 solution:exam-1-5
 
-** COLLECTED assignment:survey	      :assignment:
-   DEADLINE: <2015-10-08 Thu>
+** GRADED assignment:survey	      :assignment:
+   CLOSED: [2015-10-10 Sat 18:17] DEADLINE: <2015-10-08 Thu>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   2
