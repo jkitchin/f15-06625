@@ -1,5 +1,48 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
+
+* Some notes about the survey
+** Crashes
+- Many of you reported some crashes
+- a few reported crashes all the time
+- a few reported no crashes
+
+- I will look into a new version of emacs that may crash less frequently
+
+** Font size
+- Most people thought the font size was fine.
+- Some of you want a bigger font.
+Type: C + + to make the font bigger
+Type: C + - to make the font smaller
+
+To permanently set this, select the Jmax menu, Customize user.el, and add this line. Change 130 to a bigger number for a bigger font, and smaller for a smaller font.
+
+(set-face-attribute 'default nil :height 130)
+
+The next time you start Emacs, this should be default.
+
+** Equation size
+Most of you wanted bigger equations. To get them, put this line in your user.el file. Change 1.5 to the scale you want.
+
+(plist-put org-format-latex-options :scale 1.5)
+
+The next time you start Emacs, this should be default.
+
+** Other issues
+Many people noted they want line numbers in a code block, and better indentation.
+
+Put your cursor in a code block, and type C-c '. This will open your code block in "Python mode" which has these features. Type C-c ' to get back to org-mode.
+
+Alternatively, use the menu techela -> Run pycheck. This will give you a buffer with clickable links to the lines where errors are most of the time.
+
+#+BEGIN_SRC python
+import numpy as np
+
+a = np.array([6, 8, 9])
+#+END_SRC
+
+#+RESULTS:
+
 
 * Rate laws for reversible reactions
 
@@ -28,7 +71,7 @@ or:
 
 $\frac{k_1}{k_2} = \frac{C_{C,eq} C_{D,eq}}{C_{A,eq} C_{B,eq}} = K_{eq}$
 
-- You can see that between $k_1$, $k_2$ and $K_{eq}$, only two of them are independent. i.e. $k_2 = k_1 / K_{eq}$. 
+- You can see that between $k_1$, $k_2$ and $K_{eq}$, only two of them are independent. i.e. $k_2 = k_1 / K_{eq}$.
 
 - Thus, we may also see net reaction rates for equilibrium reaction rates written as:
 
@@ -38,12 +81,12 @@ $r_A = k_1(C_A C_B - \frac{C_C C_D}{K_{eq}})$
 
 ** A CSTR with a reversible reaction
 
-- Recall the water gas shift reaction we discussed before \(H_2O + CO \rightleftharpoons CO_2 + H_2 \). 
+- Recall the water gas shift reaction we discussed before \(H_2O + CO \rightleftharpoons CO_2 + H_2 \).
 
-- We previously calculated the equilibrium coefficient to be 1.44 at 1000K. 
+- We previously calculated the equilibrium coefficient to be 1.44 at 1000K.
 - Assume the reaction is elementary, and the forward rate constant is $k_1 = 0.02$ L / (mol * s)
 
-- The reactor is initially fed pure A and B at concentrations of 0.05 mol / L. 
+- The reactor is initially fed pure A and B at concentrations of 0.05 mol / L.
 
 - What is the exit concentration of A? the reactor volume is 10 L, and the volumetric flow rate into the reactor is 0.01 L / s.
 
@@ -63,7 +106,7 @@ Fa0 = v0 * Ca0
 
 def cstr(Ca):
     xi = (Ca - Ca0) / (-1) # compute reaction extent
-    Cb = Cb0 - xi 
+    Cb = Cb0 - xi
     Cc = Cc0 + xi
     Cd = Cd0 + xi
 
@@ -171,7 +214,7 @@ from scipy.optimize import fsolve
 
 exitC = fsolve(funcC, initGuesses)
 
-species = ['M', 'H', 'X', 'Me', 'T'] 
+species = ['M', 'H', 'X', 'Me', 'T']
 for s,C in zip(species, exitC):
     print('{0:^3s}{1:1.5f} lbmol/ft^3'.format(s,C))
 #+END_SRC
