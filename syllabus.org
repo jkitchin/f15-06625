@@ -390,7 +390,7 @@ solution:quiz-2
 
 solution:exam-1-mc
 
-** COLLECTED assignment:exam-1-2      :assignment:
+** COLLECTED assignment:exam-1-2				 :assignment:
    DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
