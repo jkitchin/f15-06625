@@ -390,8 +390,8 @@ solution:quiz-2
 
 solution:exam-1-mc
 
-** COLLECTED assignment:exam-1-2				 :assignment:
-   DEADLINE: <2015-10-07 Wed 10:20>
+** GRADED assignment:exam-1-2					 :assignment:
+   CLOSED: [2015-10-12 Mon 13:20] DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
    :POINTS:   6
