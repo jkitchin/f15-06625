@@ -424,8 +424,8 @@ solution:exam-1-3
 
 solution:exam-1-4
 
-** COLLECTED assignment:exam-1-5      :assignment:
-   DEADLINE: <2015-10-07 Wed 10:20>
+** GRADED assignment:exam-1-5					 :assignment:
+   CLOSED: [2015-10-13 Tue 18:31] DEADLINE: <2015-10-07 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam1
    :POINTS:   5
