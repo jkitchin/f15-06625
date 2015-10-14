@@ -182,7 +182,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-10-05 Mon 11:04]
 ** DONE [2015-10-07 Wed] EXAM 1 (will cover material through 9/30)
    CLOSED: [2015-10-11 Sun 15:54]
-** [2015-10-12 Mon] [[./rxns-book/multiple-rxns-2.org]]
+** DONE [2015-10-12 Mon] [[./rxns-book/multiple-rxns-2.org]]
+   CLOSED: [2015-10-14 Wed 06:03]
 ** [2015-10-14 Wed] [[./rxns-book/parameter-estimation.org]]
 ** [2015-10-19 Mon] [[./rxns-book/parameter-estimation-2.org]]
 ** [2015-10-21 Wed] [[./rxns-book/mechanism-determination.org]]
