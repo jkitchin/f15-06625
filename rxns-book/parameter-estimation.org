@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Parameter estimation and rate law determination
 
@@ -11,7 +11,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
   - linear regression
     - fitting models that are linear in the parameters
 
-  - nonlinear regression 
+  - nonlinear regression
     - fitting models that are nonlinear in the parameters
 
 - In either case we want to estimate the value of the parameters in the model, and the uncertainty in the parameters
@@ -108,7 +108,7 @@ plt.savefig('images/la-line-fit.png')
 #+END_SRC
 
 #+RESULTS:
-: The slope is -0.3145221843 
+: The slope is -0.3145221843
 : and intercept is 0.00062457337884
 
 - You should always plot the fitted function over the data to visually assess the quality of the fit
@@ -158,7 +158,7 @@ print('R-squared = {0} '.format(Rsq))
 #+RESULTS:
 : array([-0.0006, -0.0004, -0.0011, -0.0008, -0.0006,  0.0009,  0.0025,
 :         0.0025, -0.0024])
-: R-squared = 0.99999729149 
+: R-squared = 0.99999729149
 
 - The R^2 tells you how much of the variation in the data is explained by the model.
   - a value of 1 tells you all the variation is explained
@@ -195,9 +195,9 @@ print('The intercept is between {0} \n'
 #+END_SRC
 
 #+RESULTS:
-: The slope is between [-0.31500091 -0.31404346] 
+: The slope is between [-0.31500091 -0.31404346]
 : at the 95% confidence level
-: The intercept is between [-0.00144683  0.00269598] 
+: The intercept is between [-0.00144683  0.00269598]
 : at the 95% confidence level
 
 - Note in this case that the second parameter includes 0
@@ -251,9 +251,9 @@ pydoc:pycse.deriv
 
 Read the [[https://github.com/jkitchin/pycse/blob/master/pycse/PYCSE.py#L182][deriv]] source code to learn how the derivatives are approximated, and what options are available.
 
-- Note that we are actually using the data in table ref:tab-data in this code block! 
+- Note that we are actually using the data in table ref:tab-data in this code block!
 
-- We do not have to type the data in ourselves. 
+- We do not have to type the data in ourselves.
 
 - This causes some false reporting in pyflakes.
 
@@ -391,8 +391,8 @@ plt.savefig('images/regression-residuals.png')
   - Judgment comes from experience
 
 pydoc:numpy.polyfit  Fit a polynomial to data
- 
-pydoc:numpy.polyder  Get the derivative of a polynomial 
+
+pydoc:numpy.polyder  Get the derivative of a polynomial
 
 pydoc:numpy.polyval  Evaluate a polynomial at some data points
 
@@ -453,7 +453,7 @@ plt.savefig('images/poly-regression-rate.png')
 #+END_SRC
 
 #+RESULTS:
-: Summed squared error = 4.33334237487e-32
+: Summed squared error = 6.95260709924e-32
 : alpha = [ 1.877  2.22 ] at the 95% confidence level
 : k = [ 0.078  0.271] at the 95% confidence level
 
