@@ -454,3 +454,12 @@ solution:exam-1-5
    :CUSTOM_ID: cstr-mult-reactions
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:equil-1	      :assignment:
+   DEADLINE: <2015-10-21 Wed 23:59>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   3
+   :CUSTOM_ID: equil-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
