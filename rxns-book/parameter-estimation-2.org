@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Parameter estimation from differential equation based models
 
@@ -286,4 +286,3 @@ print('alpha is between {0}'.format(pint[1]))
 #+RESULTS:
 : k is between [0.90004520343586725, 1.2344558779407167]
 : alpha is between [0.30394139685834887, 0.58845526468332754]
-
