@@ -188,7 +188,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-10-18 Sun 12:49]
 ** DONE [2015-10-19 Mon] [[./rxns-book/parameter-estimation-2.org]]
    CLOSED: [2015-10-21 Wed 06:46]
-** [2015-10-21 Wed] [[./rxns-book/mechanism-determination.org]]
+** DONE [2015-10-21 Wed] [[./rxns-book/mechanism-determination.org]]
+   CLOSED: [2015-10-24 Sat 08:14]
 ** [2015-10-26 Mon] TBD
 ** [2015-10-28 Wed] [[./rxns-book/engineering-applications.org]]
 ** [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
