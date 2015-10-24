@@ -498,3 +498,12 @@ solution:nlr-1
    :CUSTOM_ID: unc-conv-cstr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:cstr-kinetics      :assignment:
+   DEADLINE: <2015-10-29 Thu 23:59>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: cstr-kinetics
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
