@@ -465,7 +465,7 @@ solution:exam-1-5
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:nlr-1	      :assignment:
+** COLLECTED assignment:nlr-1	      :assignment:
    DEADLINE: <2015-10-22 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
