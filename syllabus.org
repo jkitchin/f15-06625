@@ -475,7 +475,7 @@ solution:exam-1-5
    :END:
 
 ** TODO assignment:fit-1	      :assignment:
-   DEADLINE: <2015-10-23 Fri 23:59>
+   DEADLINE: <2015-10-24 Sat 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
