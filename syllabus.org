@@ -456,6 +456,8 @@ solution:exam-1-5
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:cstr-mult-reactions
+
 ** COLLECTED assignment:equil-1	      :assignment:
    DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
@@ -465,6 +467,8 @@ solution:exam-1-5
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:equil-1
+
 ** COLLECTED assignment:nlr-1	      :assignment:
    DEADLINE: <2015-10-22 Thu 23:59>
    :PROPERTIES:
@@ -473,6 +477,8 @@ solution:exam-1-5
    :CUSTOM_ID: nlr-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:nlr-1
 
 ** TODO assignment:fit-1	      :assignment:
    DEADLINE: <2015-10-24 Sat 23:59>
