@@ -447,7 +447,7 @@ solution:exam-1-5
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** TODO assignment:cstr-mult-reactions :assignment:
+** COLLECTED assignment:cstr-mult-reactions :assignment:
    DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
    :CATEGORY: homework
