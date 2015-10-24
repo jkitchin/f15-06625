@@ -489,3 +489,12 @@ solution:nlr-1
    :CUSTOM_ID: fit-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:unc-conv-cstr      :assignment:
+   DEADLINE: <2015-10-28 Wed 23:59>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: unc-conv-cstr
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
