@@ -456,7 +456,7 @@ solution:exam-1-5
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:equil-1	      :assignment:
+** COLLECTED assignment:equil-1	      :assignment:
    DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
    :CATEGORY: homework
