@@ -459,7 +459,7 @@ solution:exam-1-5
 
 solution:cstr-mult-reactions
 
-** COLLECTED assignment:equil-1	      :assignment:
+** COLLECTED assignment:equil-1					 :assignment:
    DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
    :CATEGORY: homework
