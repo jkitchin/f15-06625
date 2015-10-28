@@ -481,7 +481,7 @@ solution:equil-1
 
 solution:nlr-1
 
-** COLLECTED assignment:fit-1	      :assignment:
+** COLLECTED assignment:fit-1					 :assignment:
    DEADLINE: <2015-10-24 Sat 23:59>
    :PROPERTIES:
    :CATEGORY: homework
