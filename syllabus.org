@@ -471,7 +471,7 @@ solution:cstr-mult-reactions
 
 solution:equil-1
 
-** COLLECTED assignment:nlr-1	      :assignment:
+** COLLECTED assignment:nlr-1					 :assignment:
    DEADLINE: <2015-10-22 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
@@ -482,7 +482,7 @@ solution:equil-1
 
 solution:nlr-1
 
-** COLLECTED assignment:fit-1	      :assignment:
+** COLLECTED assignment:fit-1					 :assignment:
    DEADLINE: <2015-10-24 Sat 23:59>
    :PROPERTIES:
    :CATEGORY: homework
