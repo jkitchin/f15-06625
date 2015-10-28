@@ -193,7 +193,7 @@ The tentative course schedule is here. It may change.
 ** [2015-10-26 Mon] *NO CLASS*
 ** [2015-10-28 Wed] [[./rxns-book/engineering-applications.org]]
 ** [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
-** [2015-11-04 Wed] EXAM 2 (cumulative through 10/26)
+** [2015-11-04 Wed] EXAM 2 (cumulative through 10/28)
 ** [2015-11-09 Mon] *AICHE NO CLASS*
 ** [2015-11-11 Wed] *AICHE NO CLASS*
 ** [2015-11-16 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
