@@ -448,8 +448,8 @@ solution:exam-1-5
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** COLLECTED assignment:cstr-mult-reactions :assignment:
-   DEADLINE: <2015-10-21 Wed 23:59>
+** GRADED assignment:cstr-mult-reactions			 :assignment:
+   CLOSED: [2015-10-25 Sun 16:59] DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
@@ -459,7 +459,7 @@ solution:exam-1-5
 
 solution:cstr-mult-reactions
 
-** COLLECTED assignment:equil-1	      :assignment:
+** COLLECTED assignment:equil-1					 :assignment:
    DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
    :CATEGORY: homework
