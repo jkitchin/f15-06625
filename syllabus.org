@@ -482,8 +482,8 @@ solution:equil-1
 
 solution:nlr-1
 
-** COLLECTED assignment:fit-1					 :assignment:
-   DEADLINE: <2015-10-24 Sat 23:59>
+** GRADED assignment:fit-1					 :assignment:
+   CLOSED: [2015-10-29 Thu 09:49] DEADLINE: <2015-10-24 Sat 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
