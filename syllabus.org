@@ -493,7 +493,7 @@ solution:nlr-1
 
 solution:fit-1
 
-** TODO assignment:unc-conv-cstr      :assignment:
+** COLLECTED assignment:unc-conv-cstr :assignment:
    DEADLINE: <2015-10-29 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
