@@ -502,6 +502,8 @@ solution:fit-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:unc-conv-cstr
+
 ** COLLECTED assignment:cstr-kinetics :assignment:
    DEADLINE: <2015-10-29 Thu 23:59>
    :PROPERTIES:
@@ -510,3 +512,5 @@ solution:fit-1
    :CUSTOM_ID: cstr-kinetics
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:cstr-kinetics
