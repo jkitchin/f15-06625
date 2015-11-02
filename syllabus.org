@@ -504,7 +504,7 @@ solution:fit-1
 
 solution:unc-conv-cstr
 
-** COLLECTED assignment:cstr-kinetics :assignment:
+** COLLECTED assignment:cstr-kinetics				 :assignment:
    DEADLINE: <2015-10-29 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
