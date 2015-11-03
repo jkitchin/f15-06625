@@ -471,8 +471,8 @@ solution:cstr-mult-reactions
 
 solution:equil-1
 
-** COLLECTED assignment:nlr-1					 :assignment:
-   DEADLINE: <2015-10-22 Thu 23:59>
+** GRADED assignment:nlr-1					 :assignment:
+   CLOSED: [2015-11-03 Tue 15:55] DEADLINE: <2015-10-22 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
