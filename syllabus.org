@@ -514,3 +514,12 @@ solution:unc-conv-cstr
    :END:
 
 solution:cstr-kinetics
+
+** TODO assignment:test		      :assignment:
+   DEADLINE: <2015-11-03 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   0
+   :CUSTOM_ID: test
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
