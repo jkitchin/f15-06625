@@ -460,8 +460,8 @@ solution:exam-1-5
 
 solution:cstr-mult-reactions
 
-** COLLECTED assignment:equil-1					 :assignment:
-   DEADLINE: <2015-10-21 Wed 23:59>
+** GRADED assignment:equil-1					 :assignment:
+   CLOSED: [2015-10-28 Wed 17:10] DEADLINE: <2015-10-21 Wed 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
@@ -502,11 +502,24 @@ solution:fit-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:cstr-kinetics      :assignment:
-   DEADLINE: <2015-10-29 Thu 23:59>
+solution:unc-conv-cstr
+
+** GRADED assignment:cstr-kinetics				 :assignment:
+   CLOSED: [2015-11-02 Mon 11:00] DEADLINE: <2015-10-29 Thu 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
    :CUSTOM_ID: cstr-kinetics
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+solution:cstr-kinetics
+
+** TODO assignment:test		      :assignment:
+   DEADLINE: <2015-11-03 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   0
+   :CUSTOM_ID: test
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
