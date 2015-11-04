@@ -542,7 +542,7 @@ solution:cstr-kinetics
    :RUBRIC:   multiple-choice
    :END:
 
-** TODO assignment:exam-2-profit      :assignment:
+** COLLECTED assignment:exam-2-profit :assignment:
    DEADLINE: <2015-11-04 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam2
