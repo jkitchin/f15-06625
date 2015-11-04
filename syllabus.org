@@ -364,8 +364,8 @@ solution:cstr-mult-ss
    :END:
 solution:membrane-pressure
 
-** GRADED assignment:cstr-pfr-1	      :assignment:
-   CLOSED: [2015-10-23 Fri 08:48] DEADLINE: <2015-10-02 Fri 23:59>
+** COLLECTED assignment:cstr-pfr-1				 :assignment:
+   DEADLINE: <2015-10-02 Fri 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
