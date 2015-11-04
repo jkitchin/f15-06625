@@ -1,0 +1,46 @@
+
+Exam ends at 10:20am
+
+*MAKE SURE YOU ARE TURNING IN YOUR WORK!!!*
+
+* in assignment:exam-2-profit \pm is "plus/minus"
+to toggle the symbols you need to use the menu:
+   Jmax -> org-mode -> Toggle symbols
+
+C_X0 = 2.5 +/- 0.2 kmol/m^{3}
+
+k = 30 +/- 5  (units are 1/min)
+
+Y_{value} = $1.50 per kmol
+
+Operating cost = $2.50 /min /m^{3}
+
+reactor volume is 1.5 m^{3}
+
+
+* in assignment:exam-2-mc
+
+2 NO2Cl(g) --> 2NO2(g) + Cl2(g)	 KC = 0.558
+
+should read
+
+2 NO2Cl(g) <--> 2NO2(g) + Cl2(g)	 KC = 0.558
+
+i.e. it is a reversible reaction
+
+
+
+
+
+
+
+
+* collection
+#+BEGIN_SRC emacs-lisp
+(loop for problem in '("exam-2-debug" "exam-2-fit1"
+		       "exam-2-mc" "exam-2-profit")
+      do
+      (ta-collect problem))
+#+END_SRC
+
+#+RESULTS:
