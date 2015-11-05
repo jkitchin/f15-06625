@@ -524,6 +524,8 @@ solution:cstr-kinetics
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:exam-2-debug
+
 ** COLLECTED assignment:exam-2-fit1   :assignment:
    DEADLINE: <2015-11-04 Wed 10:20>
    :PROPERTIES:
@@ -532,6 +534,8 @@ solution:cstr-kinetics
    :CUSTOM_ID: exam-2-fit1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:exam-2-fit1
 
 ** GRADED assignment:exam-2-mc	      :assignment:
    CLOSED: [2015-11-04 Wed 18:28] DEADLINE: <2015-11-04 Wed 10:20>
@@ -542,6 +546,8 @@ solution:cstr-kinetics
    :RUBRIC:   multiple-choice
    :END:
 
+solution:exam-2-mc
+
 ** COLLECTED assignment:exam-2-profit :assignment:
    DEADLINE: <2015-11-04 Wed 10:20>
    :PROPERTIES:
@@ -550,3 +556,5 @@ solution:cstr-kinetics
    :CUSTOM_ID: exam-2-profit
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:exam-2-profit
