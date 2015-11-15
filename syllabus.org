@@ -558,3 +558,12 @@ solution:exam-2-mc
    :END:
 
 solution:exam-2-profit
+
+** TODO assignment:creative-2	      :assignment:
+   DEADLINE: <2015-11-23 Mon>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: creative-2
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
