@@ -193,10 +193,14 @@ The tentative course schedule is here. It may change.
 ** [2015-10-26 Mon] *NO CLASS*
 ** DONE [2015-10-28 Wed] [[./rxns-book/engineering-applications.org]]
    CLOSED: [2015-10-28 Wed 16:37]
-** [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
-** [2015-11-04 Wed] EXAM 2 (cumulative through 10/28)
-** [2015-11-09 Mon] *AICHE NO CLASS*
-** [2015-11-11 Wed] *AICHE NO CLASS*
+** DONE [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-04 Wed] EXAM 2 (cumulative through 10/28)
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-09 Mon] *AICHE NO CLASS*
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-11 Wed] *AICHE NO CLASS*
+   CLOSED: [2015-11-15 Sun 18:15]
 ** [2015-11-16 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
 ** [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
 ** [2015-11-23 Mon] [[./rxns-book/non-isothermal-batch.org]]
