@@ -519,8 +519,8 @@ solution:unc-conv-cstr
 
 solution:cstr-kinetics
 
-** COLLECTED assignment:exam-2-debug  :assignment:
-   DEADLINE: <2015-11-04 Wed 10:20>
+** GRADED assignment:exam-2-debug     :assignment:
+   CLOSED: [2015-11-15 Sun 19:36] DEADLINE: <2015-11-04 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam2
    :POINTS:   4
