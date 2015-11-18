@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Nonisothermal reaction engineering
 
@@ -16,7 +16,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 - To use this when the temperature is changing, we must have a mathematical expression for how the temperature is changing
   - This is analogous to the reactors with pressure drops
   - There we used the Ergun equation to estimate the pressure as a function of reactor volume or catalyst weight
-  - We will eventually derive equations for the temprature as well
+  - We will eventually derive equations for the temperature as well
 
 - There is also an effect of temperature on liquid phase reactions but it is much smaller
   - If the density is temperature dependent (e.g. due to thermal expansion) it may be necessary to account for this in the design equations
@@ -61,7 +61,7 @@ K &=& e^{-(\Delta H - T\Delta S)/(RT)} \\
 \ln K &=& -\Delta H/(RT) + \Delta S/R
 \end{align*}
 
-- It is conventional to express the temperature dependence of \ln K as:
+- It is conventional to express the temperature dependence of $\ln K$ as:
 
 \(\frac{d \ln K}{dT} = \frac{\Delta H}{R T^2} \)
 
