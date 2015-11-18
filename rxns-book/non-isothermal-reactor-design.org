@@ -233,7 +233,9 @@ T = np.linspace(1, 50)
 A2A1 = 2.0
 E1mE2 = 1.0
 plt.plot(T, A2A1 * np.exp(1.0/T), T, A2A1*np.exp(-1.0/T))
-plt.legend(['+','-'], loc='best')
+plt.legend(['E2 - E1 > 0','E2 - E1 < 0'], loc='best')
+plt.xlabel('T')
+plt.ylabel('A2/A1')
 plt.savefig('images/differing-ks.png')
 # [[./images/differing-ks.png]]
 #+END_SRC
