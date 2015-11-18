@@ -306,9 +306,9 @@ where:
 
 - There are three relevant forms of work that we consider
   + $\dot{W_b} = -P\frac{dV}{dt}$
-  - this is the work done if the volume changes
+     - this is the work done if the volume changes
   + \(\dot{W_f} = \sum_j F_{j,in} \overline{V}_{j,in} P_{in} - \sum_j F_{j,out} \overline{V}_{j,out} P_{out}\)
-  - this is the work done to flow mass across the boundaries. It is important if the pressure or molar volumes change.
+     - this is the work done to flow mass across the boundaries. It is important if the pressure or molar volumes change.
   + $\dot{W_s}$ is the shaft work if there are stirrers or significant mixing work
 
 - Plugging these definitions in leads to
@@ -346,7 +346,7 @@ where:
 
 - Recognize the following partial derivatives:
   1. $\frac{\partial H}{\partial T} = C_p$
-  2. $\frac{\partial H}{\partial P} = V(1 - \alpha T)$ [fn:6]
+  2. $\frac{\partial H}{\partial P} = V(1 - \alpha T)$
   3. $\frac{\partial H}{\partial n_j} = \overline{H_j}$
 
 - This leads to:
