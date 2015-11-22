@@ -584,3 +584,12 @@ solution:exam-2-profit
    :END:
 
 solution:thiele-1
+
+** TODO assignment:coolant-T	      :assignment:
+   DEADLINE: <2015-11-23 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: coolant-T
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
