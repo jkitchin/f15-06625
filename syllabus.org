@@ -203,7 +203,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-11-15 Sun 18:15]
 ** DONE [2015-11-16 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
    CLOSED: [2015-11-17 Tue 21:23]
-** [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+** DONE [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+   CLOSED: [2015-11-22 Sun 16:44]
 ** [2015-11-23 Mon] [[./rxns-book/non-isothermal-batch.org]]
 ** [2015-11-25 Wed] *NO CLASS THANKSGIVING*
 ** [2015-11-30 Mon] [[./rxns-book/non-isothermal-cstr.org]]
@@ -581,3 +582,5 @@ solution:exam-2-profit
    :CUSTOM_ID: thiele-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:thiele-1
