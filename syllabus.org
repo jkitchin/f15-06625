@@ -574,7 +574,7 @@ solution:exam-2-profit
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:thiele-1      :assignment:
+** COLLECTED assignment:thiele-1				 :assignment:
    DEADLINE: <2015-11-18 Wed>
    :PROPERTIES:
    :CATEGORY: homework
