@@ -1,5 +1,5 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Nonisothermal reaction engineering
 
@@ -16,7 +16,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 - To use this when the temperature is changing, we must have a mathematical expression for how the temperature is changing
   - This is analogous to the reactors with pressure drops
   - There we used the Ergun equation to estimate the pressure as a function of reactor volume or catalyst weight
-  - We will eventually derive equations for the temprature as well
+  - We will eventually derive equations for the temperature as well
 
 - There is also an effect of temperature on liquid phase reactions but it is much smaller
   - If the density is temperature dependent (e.g. due to thermal expansion) it may be necessary to account for this in the design equations
@@ -61,7 +61,7 @@ K &=& e^{-(\Delta H - T\Delta S)/(RT)} \\
 \ln K &=& -\Delta H/(RT) + \Delta S/R
 \end{align*}
 
-- It is conventional to express the temperature dependence of \ln K as:
+- It is conventional to express the temperature dependence of $\ln K$ as:
 
 \(\frac{d \ln K}{dT} = \frac{\Delta H}{R T^2} \)
 
@@ -233,7 +233,9 @@ T = np.linspace(1, 50)
 A2A1 = 2.0
 E1mE2 = 1.0
 plt.plot(T, A2A1 * np.exp(1.0/T), T, A2A1*np.exp(-1.0/T))
-plt.legend(['+','-'], loc='best')
+plt.legend(['E2 - E1 > 0','E2 - E1 < 0'], loc='best')
+plt.xlabel('T')
+plt.ylabel('A2/A1')
 plt.savefig('images/differing-ks.png')
 # [[./images/differing-ks.png]]
 #+END_SRC
@@ -306,9 +308,9 @@ where:
 
 - There are three relevant forms of work that we consider
   + $\dot{W_b} = -P\frac{dV}{dt}$
-  - this is the work done if the volume changes
+     - this is the work done if the volume changes
   + \(\dot{W_f} = \sum_j F_{j,in} \overline{V}_{j,in} P_{in} - \sum_j F_{j,out} \overline{V}_{j,out} P_{out}\)
-  - this is the work done to flow mass across the boundaries. It is important if the pressure or molar volumes change.
+     - this is the work done to flow mass across the boundaries. It is important if the pressure or molar volumes change.
   + $\dot{W_s}$ is the shaft work if there are stirrers or significant mixing work
 
 - Plugging these definitions in leads to
@@ -346,7 +348,7 @@ where:
 
 - Recognize the following partial derivatives:
   1. $\frac{\partial H}{\partial T} = C_p$
-  2. $\frac{\partial H}{\partial P} = V(1 - \alpha T)$ [fn:6]
+  2. $\frac{\partial H}{\partial P} = V(1 - \alpha T)$
   3. $\frac{\partial H}{\partial n_j} = \overline{H_j}$
 
 - This leads to:

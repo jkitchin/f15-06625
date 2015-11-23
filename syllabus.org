@@ -193,12 +193,18 @@ The tentative course schedule is here. It may change.
 ** [2015-10-26 Mon] *NO CLASS*
 ** DONE [2015-10-28 Wed] [[./rxns-book/engineering-applications.org]]
    CLOSED: [2015-10-28 Wed 16:37]
-** [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
-** [2015-11-04 Wed] EXAM 2 (cumulative through 10/28)
-** [2015-11-09 Mon] *AICHE NO CLASS*
-** [2015-11-11 Wed] *AICHE NO CLASS*
-** [2015-11-16 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
-** [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+** DONE [2015-11-02 Mon] [[./rxns-book/mass-transfer-1.org]]
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-04 Wed] EXAM 2 (cumulative through 10/28)
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-09 Mon] *AICHE NO CLASS*
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-11 Wed] *AICHE NO CLASS*
+   CLOSED: [2015-11-15 Sun 18:15]
+** DONE [2015-11-16 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
+   CLOSED: [2015-11-17 Tue 21:23]
+** DONE [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+   CLOSED: [2015-11-22 Sun 16:44]
 ** [2015-11-23 Mon] [[./rxns-book/non-isothermal-batch.org]]
 ** [2015-11-25 Wed] *NO CLASS THANKSGIVING*
 ** [2015-11-30 Mon] [[./rxns-book/non-isothermal-cstr.org]]
@@ -364,8 +370,9 @@ solution:cstr-mult-ss
    :END:
 solution:membrane-pressure
 
-** COLLECTED assignment:cstr-pfr-1				 :assignment:
-   DEADLINE: <2015-10-02 Fri 23:59>
+
+** GRADED assignment:cstr-pfr-1					 :assignment:
+   CLOSED: [2015-11-05 Thu 12:03] DEADLINE: <2015-10-02 Fri 23:59>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
@@ -515,11 +522,75 @@ solution:unc-conv-cstr
 
 solution:cstr-kinetics
 
-** TODO assignment:test		      :assignment:
-   DEADLINE: <2015-11-03 Tue>
+** GRADED assignment:exam-2-debug     :assignment:
+   CLOSED: [2015-11-15 Sun 19:36] DEADLINE: <2015-11-04 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam2
+   :POINTS:   4
+   :CUSTOM_ID: exam-2-debug
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+solution:exam-2-debug
+
+** GRADED assignment:exam-2-fit1      :assignment:
+   CLOSED: [2015-11-07 Sat 22:58] DEADLINE: <2015-11-04 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam2
+   :POINTS:   4
+   :CUSTOM_ID: exam-2-fit1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+solution:exam-2-fit1
+
+** GRADED assignment:exam-2-mc	      :assignment:
+   CLOSED: [2015-11-04 Wed 18:28] DEADLINE: <2015-11-04 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam2
+   :POINTS:   6
+   :CUSTOM_ID: exam-2-mc
+   :RUBRIC:   multiple-choice
+   :END:
+
+solution:exam-2-mc
+
+** COLLECTED assignment:exam-2-profit :assignment:
+   DEADLINE: <2015-11-04 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam2
+   :POINTS:   4
+   :CUSTOM_ID: exam-2-profit
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+solution:exam-2-profit
+
+** TODO assignment:creative-2	      :assignment:
+   DEADLINE: <2015-11-23 Mon>
    :PROPERTIES:
    :CATEGORY: homework
-   :POINTS:   0
-   :CUSTOM_ID: test
+   :POINTS:   4
+   :CUSTOM_ID: creative-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** GRADED assignment:thiele-1					 :assignment:
+   CLOSED: [2015-11-23 Mon 11:11] DEADLINE: <2015-11-18 Wed>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   3
+   :CUSTOM_ID: thiele-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+solution:thiele-1
+
+** TODO assignment:coolant-T	      :assignment:
+   DEADLINE: <2015-11-23 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: coolant-T
+   :RUBRIC:   (("participation" . 1.0))
    :END:
