@@ -555,8 +555,8 @@ solution:exam-2-fit1
 
 solution:exam-2-mc
 
-** COLLECTED assignment:exam-2-profit				 :assignment:
-   DEADLINE: <2015-11-04 Wed 10:20>
+** GRADED assignment:exam-2-profit				 :assignment:
+   CLOSED: [2015-11-24 Tue 13:55] DEADLINE: <2015-11-04 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam2
    :POINTS:   4
