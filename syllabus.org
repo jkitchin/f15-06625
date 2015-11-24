@@ -587,8 +587,8 @@ solution:exam-2-profit
 
 solution:thiele-1
 
-** COLLECTED assignment:coolant-T     :assignment:
-   DEADLINE: <2015-11-23 Mon>
+** GRADED assignment:coolant-T	      :assignment:
+   CLOSED: [2015-11-24 Tue 14:10] DEADLINE: <2015-11-23 Mon>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   2
