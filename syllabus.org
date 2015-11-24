@@ -585,7 +585,7 @@ solution:exam-2-profit
 
 solution:thiele-1
 
-** TODO assignment:coolant-T	      :assignment:
+** COLLECTED assignment:coolant-T     :assignment:
    DEADLINE: <2015-11-23 Mon>
    :PROPERTIES:
    :CATEGORY: participation
