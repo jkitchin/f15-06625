@@ -567,7 +567,7 @@ solution:exam-2-mc
 
 solution:exam-2-profit
 
-** TODO assignment:creative-2	      :assignment:
+** COLLECTED assignment:creative-2    :assignment:
    DEADLINE: <2015-11-23 Mon>
    :PROPERTIES:
    :CATEGORY: homework
