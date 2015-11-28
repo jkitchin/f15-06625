@@ -567,8 +567,8 @@ solution:exam-2-mc
 
 solution:exam-2-profit
 
-** COLLECTED assignment:creative-2    :assignment:
-   DEADLINE: <2015-11-23 Mon>
+** GRADED assignment:creative-2	      :assignment:
+   CLOSED: [2015-11-27 Fri 19:50] DEADLINE: <2015-11-23 Mon>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
