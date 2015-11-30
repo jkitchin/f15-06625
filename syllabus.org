@@ -606,3 +606,12 @@ solution:thiele-1
    :CUSTOM_ID: eb-batch
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:eb-inerts	      :assignment:
+   DEADLINE: <2015-12-03 Thu>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   3
+   :CUSTOM_ID: eb-inerts
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
