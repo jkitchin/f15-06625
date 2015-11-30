@@ -597,3 +597,12 @@ solution:thiele-1
    :CUSTOM_ID: coolant-T
    :RUBRIC:   (("participation" . 1.0))
    :END:
+
+** TODO assignment:eb-batch	      :assignment:
+   DEADLINE: <2015-12-02 Wed>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: eb-batch
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
