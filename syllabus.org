@@ -205,8 +205,10 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-11-17 Tue 21:23]
 ** DONE [2015-11-18 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
    CLOSED: [2015-11-22 Sun 16:44]
-** [2015-11-23 Mon] [[./rxns-book/non-isothermal-batch.org]]
-** [2015-11-25 Wed] *NO CLASS THANKSGIVING*
+** DONE [2015-11-23 Mon] [[./rxns-book/non-isothermal-batch.org]]
+   CLOSED: [2015-11-29 Sun 20:17]
+** DONE [2015-11-25 Wed] *NO CLASS THANKSGIVING*
+   CLOSED: [2015-11-29 Sun 20:17]
 ** [2015-11-30 Mon] [[./rxns-book/non-isothermal-cstr.org]]
 ** [2015-12-02 Wed] [[./rxns-book/non-isothermal-pfr.org]]
 ** [2015-12-07 Mon] [[./rxns-book/nonisothermal-mult-rxns.org]]
