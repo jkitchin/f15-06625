@@ -599,7 +599,7 @@ solution:thiele-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** TODO assignment:eb-batch	      :assignment:
+** COLLECTED assignment:eb-batch      :assignment:
    DEADLINE: <2015-12-02 Wed>
    :PROPERTIES:
    :CATEGORY: homework
