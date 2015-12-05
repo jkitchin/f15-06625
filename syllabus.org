@@ -608,7 +608,7 @@ solution:thiele-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** TODO assignment:eb-inerts	      :assignment:
+** COLLECTED assignment:eb-inerts     :assignment:
    DEADLINE: <2015-12-03 Thu>
    :PROPERTIES:
    :CATEGORY: homework
