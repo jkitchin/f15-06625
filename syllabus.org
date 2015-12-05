@@ -608,6 +608,8 @@ solution:thiele-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:eb-batch
+
 ** COLLECTED assignment:eb-inerts     :assignment:
    DEADLINE: <2015-12-03 Thu>
    :PROPERTIES:
@@ -616,3 +618,5 @@ solution:thiele-1
    :CUSTOM_ID: eb-inerts
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+solution:eb-inerts
