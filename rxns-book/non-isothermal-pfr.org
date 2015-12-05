@@ -1,5 +1,7 @@
 #+STARTUP: showall
-elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities  
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
+
+* *The penultimate lecture*
 
 * The energy balance and the PFR
 - For the plug flow reactor the energy balance we will use for a single reaction is
@@ -43,14 +45,17 @@ def adiabatic_pfr(Y, V):
     Fc = extent
 
     Ft = Fa + Fb + Fc
-    
+
     # include temperature in the volumetric flow
     v = v0 * Ft / Ft0 * T / T0
 
+    # reaction rate
     k = np.exp(34.3 - 34222.0 / T)
     Ca = Fa / v
     r = k * Ca
     ra = -r
+
+    # thermodynamic reaction energy
     Hrxn = Hrxn_298 + (Cpb + Cpc - Cpa) * (T - 298.0)
 
     dFadV = ra
@@ -59,7 +64,7 @@ def adiabatic_pfr(Y, V):
     return [dFadV, dTdV]
 
 
-Vspan = np.linspace(0, 5) # volume in L
+Vspan = np.linspace(0, 15) # volume in L
 Y0 = [Fa0, T0]
 
 sol = odeint(adiabatic_pfr, Y0, Vspan)
@@ -69,12 +74,12 @@ T = sol[:, 1]
 
 X = ((Fa - Fa0) * (-1) / Fa0)
 
-plt.subplot(1,2,1)
+plt.subplot(1, 2, 1)
 plt.plot(Vspan, X)
 plt.xlabel('Volume (L)')
 plt.ylabel('Conversion')
 
-plt.subplot(1,2,2)
+plt.subplot(1, 2, 2)
 plt.plot(Vspan, T)
 plt.xlabel('Volume (L)')
 plt.ylabel('Temperature (K)')
@@ -144,8 +149,8 @@ Vspan = np.linspace(0, 5) # volume in L
 Y0 = [Fa0, T0]
 
 # we examine three flow rates of inerts
-colors = 'rgb'  # colors to make each solution
-for i, Fi0 in enumerate([1.0, 0.1, 0.0]):
+colors = 'rgbk'  # colors to make each solution
+for i, Fi0 in enumerate([1.0, 0.5, 0.1, 0.01, 0.001, 0.0]):
     sol = odeint(adiabatic_pfr, Y0, Vspan, args=(Fi0,))
 
     Fa = sol[:, 0]
@@ -154,12 +159,12 @@ for i, Fi0 in enumerate([1.0, 0.1, 0.0]):
     X = ((Fa - Fa0) * (-1) / Fa0)
 
     plt.subplot(1,2,1)
-    plt.plot(Vspan, X, colors[i], label='Fi0 = {0} mol/s'.format(Fi0))
+    plt.plot(Vspan, X,  label='Fi0 = {0} mol/s'.format(Fi0))
     plt.xlabel('Volume (L)')
     plt.ylabel('Conversion')
 
     plt.subplot(1,2,2)
-    plt.plot(Vspan, T, colors[i], label='Fi0 = {0} mol/s'.format(Fi0))
+    plt.plot(Vspan, T,  label='Fi0 = {0} mol/s'.format(Fi0))
     plt.xlabel('Volume (L)')
     plt.ylabel('Temperature (K)')
 
@@ -171,6 +176,7 @@ plt.legend(loc='best')
 
 plt.tight_layout()
 plt.savefig('images/adiabatic-pfr-inerts.png')
+plt.show()
 #+END_SRC
 
 #+RESULTS:
@@ -236,7 +242,7 @@ Cpa = 0.1630      # kJ/mol/K
 Cpb = 0.083
 Cpc = 0.071
 
-Ta = 1150.0       # ambient heat exchanger temperature
+Ta = 1080.0       # ambient heat exchanger temperature
 Ua = 0.0165       # overall heat transfer coefficient
 
 def pfr(Y, V):
@@ -285,12 +291,12 @@ plt.xlabel('Volume (L)')
 plt.ylabel('Temperature (K)')
 
 plt.tight_layout()
-plt.savefig('images/adiabatic-pfr-ambient-heat.png')
+plt.savefig('images/pfr-ambient-heat.png')
 #+END_SRC
 
 #+RESULTS:
 
-[[./images/adiabatic-pfr-ambient-heat.png]]
+[[./images/pfr-ambient-heat.png]]
 
 - Note that now we get complete conversion at a low reactor volume
 
@@ -349,7 +355,7 @@ Cpa = 0.1630      # kJ/mol/K
 Cpb = 0.083
 Cpc = 0.071
 
-Tshell0 = 1250.0    # ambient heat exchanger temperature
+Tshell0 = 1150.0    # ambient heat exchanger temperature
 Ua = 0.0165         # overall heat transfer coefficient
 mdot = 1.0          # mol/s coolant flow rate
 Cpcoolant = 0.0345  # Heat capacity of coolant
@@ -401,12 +407,12 @@ plt.ylabel('Temperature (K)')
 plt.legend(loc='best')
 
 plt.tight_layout()
-plt.savefig('images/adiabatic-pfr-cocurrent-heat.png')
+plt.savefig('images/pfr-cocurrent-heat.png')
 #+END_SRC
 
 #+RESULTS:
 
-[[./images/adiabatic-pfr-cocurrent-heat.png]]
+[[./images/pfr-cocurrent-heat.png]]
 
 - You can see the shell temperature decreases along the volume
 
@@ -469,9 +475,9 @@ Cpa = 0.1630      # kJ/mol/K
 Cpb = 0.083
 Cpc = 0.071
 
-Tshell0 = 1250.0    # ambient heat exchanger temperature
+Tshell0 = 1100.0    # ambient heat exchanger temperature
 Ua = 0.0165         # overall heat transfer coefficient
-mdot = 0.5          # mol/s coolant flow rate
+mdot = 1.0          # mol/s coolant flow rate
 Cpcoolant = 0.0345  # Heat capacity of coolant
 
 
@@ -503,8 +509,8 @@ def pfr(Y, V):
 Vspan = np.linspace(0, 5, 100)  # volume in L
 
 # you have to manually iterate on this value until Tshell[-1] == 1250
-Ta_guess = 1016.8  # for 0.5 mol/s coolant
-# Ta_guess = 1133    # for 1 mol/s coolant
+#Ta_guess = 1020  # for 0.5 mol/s coolant
+Ta_guess = 1012   # for 1 mol/s coolant
 Y0 = [Fa0, T0, Ta_guess]
 
 from scipy.integrate import odeint
@@ -513,6 +519,7 @@ sol = odeint(pfr, Y0, Vspan)
 Fa = sol[:, 0]
 T = sol[:, 1]
 Tshell = sol[:, 2]
+print Tshell[-1]
 X = ((Fa - Fa0) * (-1) / Fa0)
 
 plt.subplot(1, 2, 1)
@@ -529,9 +536,11 @@ plt.legend(loc='best')
 
 plt.tight_layout()
 plt.savefig('images/adiabatic-pfr-countercurrent-heat.png')
+plt.show()
 #+END_SRC
 
 #+RESULTS:
+: 1100.06504981
 
 [[./images/adiabatic-pfr-countercurrent-heat.png]]
 
@@ -544,3 +553,47 @@ plt.savefig('images/adiabatic-pfr-countercurrent-heat.png')
 - But you need an initial guess for the solution otherwise
   - The solution does not have an intuitive form so it is hard to guess
 
+
+#+BEGIN_SRC python
+for i, el in enumerate(['a', 'b', 'c']):
+    print i, el
+#+END_SRC
+
+#+RESULTS:
+: 0 a
+: 1 b
+: 2 c
+
+#+BEGIN_SRC python
+i = 0
+L = ['a', 'b', 'c']
+while i < len(L):
+    print i, L[i]
+    i = i + 1
+#+END_SRC
+
+#+RESULTS:
+: 0 a
+: 1 b
+: 2 c
+
+#+BEGIN_SRC python
+for a, b in zip([1, 2, 3], ['a', 'b', 'c']):
+    print a,b
+#+END_SRC
+
+#+RESULTS:
+: 1 a
+: 2 b
+: 3 c
+
+
+#+BEGIN_SRC python
+def f(T):
+    return T**2
+
+print [f(t) for t in [1, 2, 3, 4, 6]]
+#+END_SRC
+
+#+RESULTS:
+: [1, 4, 9, 16, 36]
