@@ -211,7 +211,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-11-29 Sun 20:17]
 ** DONE [2015-11-30 Mon] [[./rxns-book/non-isothermal-cstr.org]]
    CLOSED: [2015-12-02 Wed 07:02]
-** [2015-12-02 Wed] [[./rxns-book/non-isothermal-pfr.org]]
+** DONE [2015-12-02 Wed] [[./rxns-book/non-isothermal-pfr.org]]
+   CLOSED: [2015-12-06 Sun 18:30]
 ** [2015-12-07 Mon] [[./rxns-book/nonisothermal-mult-rxns.org]]
 ** [2015-12-09 Wed] EXAM 3 (Cumulative through 12/07)
 
