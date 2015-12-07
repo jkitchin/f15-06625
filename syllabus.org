@@ -610,7 +610,7 @@ solution:thiele-1
 
 solution:eb-batch
 
-** COLLECTED assignment:eb-inerts     :assignment:
+** COLLECTED assignment:eb-inerts				 :assignment:
    DEADLINE: <2015-12-03 Thu>
    :PROPERTIES:
    :CATEGORY: homework
