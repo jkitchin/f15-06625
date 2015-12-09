@@ -648,3 +648,12 @@ solution:eb-inerts
    :CUSTOM_ID: exam-3-mrxns
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
+
+** TODO assignment:exam-3-eb-cstr     :assignment:
+   DEADLINE: <2015-12-09 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   5
+   :CUSTOM_ID: exam-3-eb-cstr
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
