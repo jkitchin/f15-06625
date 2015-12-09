@@ -211,7 +211,8 @@ The tentative course schedule is here. It may change.
    CLOSED: [2015-11-29 Sun 20:17]
 ** DONE [2015-11-30 Mon] [[./rxns-book/non-isothermal-cstr.org]]
    CLOSED: [2015-12-02 Wed 07:02]
-** [2015-12-02 Wed] [[./rxns-book/non-isothermal-pfr.org]]
+** DONE [2015-12-02 Wed] [[./rxns-book/non-isothermal-pfr.org]]
+   CLOSED: [2015-12-06 Sun 18:30]
 ** [2015-12-07 Mon] [[./rxns-book/nonisothermal-mult-rxns.org]]
 ** [2015-12-09 Wed] EXAM 3 (Cumulative through 12/07)
 
@@ -620,3 +621,48 @@ solution:eb-batch
    :END:
 
 solution:eb-inerts
+
+** COLLECTED assignment:exam-3-mc     :assignment:
+   DEADLINE: <2015-12-09 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   6
+   :CUSTOM_ID: exam-3-mc
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
+** COLLECTED assignment:exam-3-mt     :assignment:
+   DEADLINE: <2015-12-09 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   5
+   :CUSTOM_ID: exam-3-mt
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** COLLECTED assignment:exam-3-mrxns  :assignment:
+   DEADLINE: <2015-12-09 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   5
+   :CUSTOM_ID: exam-3-mrxns
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** COLLECTED assignment:exam-3-eb-cstr :assignment:
+   DEADLINE: <2015-12-09 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   5
+   :CUSTOM_ID: exam-3-eb-cstr
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+** COLLECTED assignment:exam-3-final  :assignment:
+   DEADLINE: <2015-12-09 Wed 10:20>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   0
+   :CUSTOM_ID: exam-3-final
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
