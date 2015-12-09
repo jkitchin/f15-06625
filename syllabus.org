@@ -600,8 +600,8 @@ solution:thiele-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-** COLLECTED assignment:eb-batch      :assignment:
-   DEADLINE: <2015-12-02 Wed>
+** GRADED assignment:eb-batch					 :assignment:
+   CLOSED: [2015-12-08 Tue 19:39] DEADLINE: <2015-12-02 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
@@ -649,7 +649,7 @@ solution:eb-inerts
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-** COLLECTED assignment:exam-3-eb-cstr :assignment:
+** COLLECTED assignment:exam-3-eb-cstr				 :assignment:
    DEADLINE: <2015-12-09 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam3
