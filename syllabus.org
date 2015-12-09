@@ -622,8 +622,8 @@ solution:eb-batch
 
 solution:eb-inerts
 
-** COLLECTED assignment:exam-3-mc     :assignment:
-   DEADLINE: <2015-12-09 Wed 10:20>
+** GRADED assignment:exam-3-mc	      :assignment:
+   CLOSED: [2015-12-09 Wed 16:44] DEADLINE: <2015-12-09 Wed 10:20>
    :PROPERTIES:
    :CATEGORY: exam3
    :POINTS:   6
