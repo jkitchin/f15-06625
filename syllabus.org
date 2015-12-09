@@ -611,8 +611,8 @@ solution:thiele-1
 
 solution:eb-batch
 
-** COLLECTED assignment:eb-inerts     :assignment:
-   DEADLINE: <2015-12-03 Thu>
+** GRADED assignment:eb-inerts					 :assignment:
+   CLOSED: [2015-12-07 Mon 16:57] DEADLINE: <2015-12-03 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
